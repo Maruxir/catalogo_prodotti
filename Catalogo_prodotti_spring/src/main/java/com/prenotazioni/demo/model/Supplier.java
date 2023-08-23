@@ -1,14 +1,15 @@
+
 package com.prenotazioni.demo.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Supplier {
@@ -20,6 +21,14 @@ public class Supplier {
 	private String email;
 	private String password;
 	private String address;
+	
+	@ManyToMany
+	@JoinTable(
+	        name = "Supplier_products",
+	        joinColumns = @JoinColumn(name = "supplier_id"),
+	        inverseJoinColumns = @JoinColumn(name = "number_code")
+	    )
+	private List<Product> products;
 	
 	
 	public int getSupplier_id() {

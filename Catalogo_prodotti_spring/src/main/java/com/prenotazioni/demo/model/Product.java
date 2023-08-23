@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -19,6 +20,9 @@ public class Product {
 	private String name;
 	private String description;
 	private double price;
+	
+	@ManyToMany(mappedBy = "products")
+	private List<Supplier> suppliers;
 	
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<Review> reviews = new ArrayList<>();

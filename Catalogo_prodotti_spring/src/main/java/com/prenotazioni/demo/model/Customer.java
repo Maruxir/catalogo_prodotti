@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -21,6 +23,14 @@ public class Customer {
 	
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Review> reviews = new ArrayList<>();
+	
+	  @ManyToOne
+	    @JoinColumn(name = "role_id")
+	    private Role user_role;
+	  
+	public Customer() {
+		user_role = new Role(1, "ROLE_CUSTOMER");
+	}  
 	
 	public int getId() {
 		return customer_id;
