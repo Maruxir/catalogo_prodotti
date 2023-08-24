@@ -1,5 +1,5 @@
 
-package com.prenotazioni.demo.model;
+package com.catalogo.demo.model;
 
 import java.util.List;
 

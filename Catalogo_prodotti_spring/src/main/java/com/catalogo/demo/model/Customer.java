@@ -1,4 +1,4 @@
-package com.prenotazioni.demo.model;
+package com.catalogo.demo.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +26,16 @@ public class Customer {
 	
 	  @ManyToOne
 	    @JoinColumn(name = "role_id")
-	    private Role user_role;
+	    private Roles user_role;
 	  
-	public Customer() {
-		user_role = new Role(1, "ROLE_CUSTOMER");
-	}  
+	public Roles getUser_role() {
+		return user_role;
+	}
+
+	public void setUser_role(Roles role) {
+		this.user_role = role;
+	}
+
 	
 	public int getId() {
 		return customer_id;

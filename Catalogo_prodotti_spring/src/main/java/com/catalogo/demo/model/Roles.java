@@ -1,19 +1,25 @@
 
-package com.prenotazioni.demo.model;
+package com.catalogo.demo.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Role {
+public class Roles{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int role_id;
+	
+	@Column(nullable=false, unique=true)
 	private String name;
 	
-	public Role(int id, String name) {
+	public Roles() {
+	}
+	
+	public Roles(int id, String name) {
 		this.role_id = id;
 		this.name= name;
 	}

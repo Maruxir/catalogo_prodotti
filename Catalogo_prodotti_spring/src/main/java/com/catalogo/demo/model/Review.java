@@ -1,4 +1,4 @@
-package com.prenotazioni.demo.model;
+package com.catalogo.demo.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
