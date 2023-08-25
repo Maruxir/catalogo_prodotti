@@ -40,7 +40,7 @@ public class SpringSecurity{
                         authorize.requestMatchers("/Customer").permitAll()
                                 .requestMatchers("/index").permitAll()
                                 .requestMatchers("/administrator").hasRole("ADMINISTRATOR")
-                                .requestMatchers("/users").hasRole("CUSTOMER")
+                                .requestMatchers("/products").hasRole("CUSTOMER")
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")

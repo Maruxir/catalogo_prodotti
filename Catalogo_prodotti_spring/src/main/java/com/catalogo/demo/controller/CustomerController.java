@@ -25,10 +25,6 @@ public class CustomerController {
 		return service.getName(id);
 	}
 	
-	@RequestMapping("/Customer") 
-	public String emailget() {
-		return service.email("sara.bianchi");
-	}
 	
 	   @GetMapping("/users")
 	    public String users(){
@@ -40,13 +36,4 @@ public class CustomerController {
 	        return "sono l'amministratore";
 	    }
 	
-	@RequestMapping("/demo") 
-	public String ciao() {
-		return "Ci siamo!";
-	}
-	
-	@RequestMapping("/uno") 
-	public String ciao1() {
-		return "con log!";
-	}
 }
