@@ -39,18 +39,21 @@ public class SpringSecurity{
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers("/Customer").permitAll()
                                 .requestMatchers("/index").permitAll()
+                                .requestMatchers("/administrator").hasRole("ADMINISTRATOR")
                                 .requestMatchers("/users").hasRole("CUSTOMER")
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")
                                 .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/users")
+                                //.defaultSuccessUrl("/users")
                                 .permitAll()
                 ).logout(
                         logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                                 .permitAll()
                 );
+        			
+			        
         return http.build();
     }
 

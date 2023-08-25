@@ -34,6 +34,11 @@ public class CustomerController {
 	    public String users(){
 	        return "ciao ciao ciaooooo";
 	    }
+	   
+	   @GetMapping("/administrator")
+	    public String administrator(){
+	        return "sono l'amministratore";
+	    }
 	
 	@RequestMapping("/demo") 
 	public String ciao() {
