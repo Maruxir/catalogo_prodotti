@@ -39,6 +39,9 @@ public class SpringSecurity{
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers("/Customer").permitAll()
                                 .requestMatchers("/index").permitAll()
+                                .requestMatchers("/delete/{id}").permitAll()
+                                .requestMatchers("/deletePs/{id}").permitAll()
+                                .requestMatchers("/{id}").permitAll()
                                 .requestMatchers("/administrator").hasRole("ADMINISTRATOR")
                                 .requestMatchers("/products").hasRole("CUSTOMER")
                 ).formLogin(

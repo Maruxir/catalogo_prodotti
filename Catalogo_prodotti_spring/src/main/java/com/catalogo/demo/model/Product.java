@@ -1,7 +1,9 @@
 package com.catalogo.demo.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -21,11 +23,15 @@ public class Product {
 	private String description;
 	private double price;
 	
-	@ManyToMany(mappedBy = "products")
-	private List<Supplier> suppliers;
+	/*@ManyToMany(mappedBy = "products")
+	private List<Supplier> suppliers;*/
+	
+	 @ManyToMany(mappedBy = "product")
+	    private Set<Product_supplier> productSupplier = new HashSet<>();
 	
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<Review> reviews = new ArrayList<>();
+	
 	
 	public int getNumber_code() {
 		return number_code;

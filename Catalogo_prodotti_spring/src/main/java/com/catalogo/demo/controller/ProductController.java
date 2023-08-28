@@ -18,14 +18,21 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
+	/*visualizza prodotti*/
 	@GetMapping("/products")
 	public List<Product> getProducts() {
 		return productService.getProduct();
 	}
 	
-	/*@RequestMapping("/products/{id}") 
+	/*visualizza fornitori*/
+	@RequestMapping("/{id}") 
 	public List<Supplier> getSuppliers(@PathVariable int id) {
 		return productService.getSuppliers(id);
-	}*/
+	}
+	
+	@RequestMapping("/delete/{id}") 
+	public void update(@PathVariable int id) {
+		productService.delete(id);
+	}
 	
 }

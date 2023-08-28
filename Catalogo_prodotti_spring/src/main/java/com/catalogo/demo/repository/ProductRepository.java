@@ -1,4 +1,4 @@
-package com.catalogo.demo.service;
+package com.catalogo.demo.repository;
 
 import java.util.List;
 
@@ -8,10 +8,14 @@ import org.springframework.stereotype.Repository;
 
 import com.catalogo.demo.model.Customer;
 import com.catalogo.demo.model.Product;
+import com.catalogo.demo.model.Supplier;
 
 @Repository
 public interface ProductRepository extends CrudRepository<Product, Integer>{
 	@Query(value = "select * from product", nativeQuery = true)
 	List<Product> getProduct();
+
+	@Query(value = "select id_ps from product_supplier ps where ps.number_code = ?1", nativeQuery = true)
+	List<Integer> getSuppliers(int productId);
 
 }

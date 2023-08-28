@@ -1,7 +1,9 @@
 
 package com.catalogo.demo.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Supplier {
@@ -22,13 +25,16 @@ public class Supplier {
 	private String password;
 	private String address;
 	
-	@ManyToMany
+	/*@ManyToMany
 	@JoinTable(
 	        name = "Supplier_products",
 	        joinColumns = @JoinColumn(name = "supplier_id"),
 	        inverseJoinColumns = @JoinColumn(name = "number_code")
 	    )
-	private List<Product> products;
+	private List<Product> products; */
+	
+	@OneToMany(mappedBy = "supplier")
+	 private Set<Product_supplier> productSupplier = new HashSet<>();
 	
 	
 	public int getSupplier_id() {
