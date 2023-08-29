@@ -21,8 +21,8 @@ public class ProductService {
 	@Autowired
 	private SupplierRepository supplierRepository;
 
-	public List<Product> getProduct() {
-		return productRepository.getProduct();
+	public ArrayList<Product> getProduct() {
+		return productRepository.findAll();
 	}
 
 	public List<Supplier> getSuppliers(int productId) {

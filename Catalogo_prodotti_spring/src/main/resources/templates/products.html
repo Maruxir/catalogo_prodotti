@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Prodotti disponibili</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" type="text/css" href="./css/styles.css" />
+  <script>
+    function cancellato() {
+      alert("Prenotazione cancellata");
+    }
+    function toPrenotabili() {
+  	var username = sessionStorage.getItem("user");
+	console.log(username);
+	 window.location.href="/prenotabiliAllievo/"+username; }
+	 
+	function toPrenotati() {
+  	var username = sessionStorage.getItem("user");
+	console.log(username);
+	 window.location.href="/prenotatiAllievo/"+username; }
+  </script>
+</head>
+<body>
+
+
+
+<ul class="ulnavbar">
+  <li class="navbar"><a onclick="toPrenotabili()">Lista Esami Prenotabili</a></li>
+  <li class="navbar"><a  onclick="toPrenotati()">Esami Prenotati</a></li>
+  <li class="navbar" style="float:right"><a href="/home">Logout</a></li>
+</ul>
+
+
+
+<h2>Prodotti disponibili</h2><br>
+
+<br>
+
+<div class="tabEsami">
+
+
+    <table id="esami">
+     <tr>
+        <th>nome prodotto</th>
+        <th>Descizione</th>
+        <th>Prezzo</th>
+      </tr>
+     	
+	<tr th:each="Product: ${product}">
+		<td> <span th:text = "${Product.name}">Default</span> </td>
+		<td> <span th:text = "${Product.description}">Default</span> </td>
+		<td> <span th:text = "${Product.price}">Default</span> </td>
+		 	
+		<td> <form action='/delete/'  method="post"> 
+		 <button type="submit">Supplier</button>
+		    	</form>
+		    	</td>
+		    	
+		
+		
+	</tr>
+
+    </table>
+
+  </form>
+</div>
+</body>
+</html>

@@ -18,11 +18,11 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
-	/*visualizza prodotti*/
+	/*visualizza prodotti
 	@GetMapping("/products")
 	public List<Product> getProducts() {
-		return productService.getProduct();
-	}
+		return productService.getProduct(); 
+	} */
 	
 	/*visualizza fornitori*/
 	@RequestMapping("/supplier/{id}") 
