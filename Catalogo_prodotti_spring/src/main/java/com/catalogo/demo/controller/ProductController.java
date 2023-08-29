@@ -25,7 +25,7 @@ public class ProductController {
 	}
 	
 	/*visualizza fornitori*/
-	@RequestMapping("/{id}") 
+	@RequestMapping("/supplier/{id}") 
 	public List<Supplier> getSuppliers(@PathVariable int id) {
 		return productService.getSuppliers(id);
 	}

@@ -41,7 +41,7 @@ public class SpringSecurity{
                                 .requestMatchers("/index").permitAll()
                                 .requestMatchers("/delete/{id}").permitAll()
                                 .requestMatchers("/deletePs/{id}").permitAll()
-                                .requestMatchers("/{id}").permitAll()
+                                .requestMatchers("/supplier/{id}").permitAll()
                                 .requestMatchers("/administrator").hasRole("ADMINISTRATOR")
                                 .requestMatchers("/products").hasRole("CUSTOMER")
                 ).formLogin(
