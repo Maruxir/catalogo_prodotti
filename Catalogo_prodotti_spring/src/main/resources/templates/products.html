@@ -40,17 +40,17 @@
 
     <table id="esami">
      <tr>
-        <th>nome prodotto</th>
-        <th>Descizione</th>
-        <th>Prezzo</th>
+        <th>Nome</th>
+        <th>Indirizzo</th>
+        <th>Email</th>
       </tr>
      	
-	<tr th:each="Product: ${product}">
-		<td> <span th:text = "${Product.name}">Default</span> </td>
-		<td> <span th:text = "${Product.description}">Default</span> </td>
-		<td> <span th:text = "${Product.price}">Default</span> </td>
+	<tr th:each="Supplier: ${supplier}">
+		<td> <span th:text = "${Supplier.name}">Default</span> </td>
+		<td> <span th:text = "${Supplier.address}">Default</span> </td>
+		<td> <span th:text = "${Supplier.email}">Default</span> </td>
 		 	
-		<td> <form action='/delete/'  method="post"> 
+		<td> <form action='/suppliers/'  method="post"> 
 		 <button type="submit">Supplier</button>
 		    	</form>
 		    	</td>

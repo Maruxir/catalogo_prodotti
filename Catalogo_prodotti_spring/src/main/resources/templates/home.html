@@ -54,6 +54,13 @@
     margin-top: 10px;
   }
 </style>
+<script>  function toSuppliers(codeNumber) {
+		sessionStorage.setItem('codeNumber', codeNumber);
+  	var code = sessionStorage.getItem("codeNumber");
+	console.log(code);
+	 window.location.href="/suppliers/"+ code; }
+</script>
+
 </head>
 <body>
   <header class="header">
@@ -64,12 +71,15 @@
     
     	<tr th:each="Product: ${product}">
       <div class="container">
-    <a href="product1.html" class="product-link">
+   <!-- <a href="product1.html" class="product-link"> -->
       <div class="product">
         <img src="./product.png"
         <h2><td> <span th:text = "${Product.name}">Default</span> </td></h2>
         <p class="price"><td> <span th:text = "${Product.description}">Default</span> </td> </p>
-		<p class="price"><td> <span th:text = "${Product.price}">Default</span> </td></p>
+		<p class="price"><td> <span th:text = "${Product.price}+'€'">Default</span> </td></p>
+		<a th:onclick="|toSuppliers('${Product.number_code}')|">Fornitori</a>	
+		
+		
       </div>
     
   </div>

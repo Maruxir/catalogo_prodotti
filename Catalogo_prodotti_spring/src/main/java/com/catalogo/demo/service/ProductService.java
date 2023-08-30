@@ -25,9 +25,9 @@ public class ProductService {
 		return productRepository.findAll();
 	}
 
-	public List<Supplier> getSuppliers(int productId) {
+	public List<Supplier> getSuppliers(int id) {
 		List<Supplier> suppliers = new ArrayList<Supplier>();
-		 List<Integer> suppliersId = productRepository.getSuppliers(productId);
+		 List<Integer> suppliersId = productRepository.getSuppliers(id);
 		 for(Integer supplierId: suppliersId) {
 			 Optional<Supplier> supplier = supplierRepository.findById(supplierId);
 			Supplier valueSupplier = supplier.orElse(null);
@@ -35,9 +35,25 @@ public class ProductService {
 		 }
 		 return suppliers;
 	}
+	
 
 	public void delete(int id) {
 		productRepository.deleteById(id);
-	} 
+	}
+
+	public Optional<Product> findById(int code) {
+		return productRepository.findById(code);
+	}
+
+	/*public List<Product> getSup(int id) {
+		
+		List<Integer> sup = productRepository.getSuppliers(id);
+		for (Integer supplierId: suppliersId) {
+			 Optional<Supplier> supplier = supplierRepository.findById(supplierId);
+			Supplier valueSupplier = supplier.orElse(null);
+			suppliers.add(valueSupplier);
+		 }
+		
+	} */
 
 }

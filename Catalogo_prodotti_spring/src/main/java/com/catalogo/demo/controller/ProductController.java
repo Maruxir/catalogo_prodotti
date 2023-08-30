@@ -24,14 +24,14 @@ public class ProductController {
 		return productService.getProduct(); 
 	} */
 	
-	/*visualizza fornitori*/
+	/*visualizza fornitori
 	@RequestMapping("/supplier/{id}") 
 	public List<Supplier> getSuppliers(@PathVariable int id) {
 		return productService.getSuppliers(id);
-	}
+	} */
 	
 	@RequestMapping("/delete/{id}") 
-	public void update(@PathVariable int id) {
+	public void delete(@PathVariable int id) {
 		productService.delete(id);
 	}
 	
