@@ -45,6 +45,10 @@ public class ProductService {
 		return productRepository.findById(code);
 	}
 
+	public List<Product> getProductByName(String name) {
+		return productRepository.getByName(name);
+	}
+
 	/*public List<Product> getSup(int id) {
 		
 		List<Integer> sup = productRepository.getSuppliers(id);

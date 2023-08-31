@@ -48,5 +48,18 @@ public class AuthController {
 			return "products";
 		}
 	   
+	   @RequestMapping(value = "/deleteProduct/{id}") 
+		public String deleteProduct(Model model, @PathVariable int id) {
+		   productService.delete(id);
+		   return "home";
+		}
+	   
+	   @RequestMapping(value = "/cerca/{name}") 
+		public String cerca(Model model , @PathVariable String name) {
+			List<Product> product = productService.getProductByName(name);
+			model.addAttribute("product" , product);
+			
+			return "home";
+		}
 	  
 }

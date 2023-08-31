@@ -41,6 +41,7 @@ public class SpringSecurity{
                                 .requestMatchers("/index").permitAll()
                                 .requestMatchers("/delete/{id}").permitAll()
                                 .requestMatchers("/deletePs/{id}").permitAll()
+                                .requestMatchers("/cerca/{name}").permitAll()
                                 .requestMatchers("/suppliers/{id}").permitAll()
                                 .requestMatchers("/supplier/{id}").permitAll()
                                 .requestMatchers("/administrator").hasRole("ADMINISTRATOR")

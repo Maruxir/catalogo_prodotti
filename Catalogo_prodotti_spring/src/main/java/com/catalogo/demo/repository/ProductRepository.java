@@ -21,5 +21,8 @@ public interface ProductRepository extends CrudRepository<Product, Integer>{
 	List<Integer> getSuppliers(int productId);
 	
 	void deleteById(int id);
+
+	@Query(value = "select * from product p where p.name LIKE %?1%", nativeQuery = true)
+	List<Product> getByName(String name);
 	
 }

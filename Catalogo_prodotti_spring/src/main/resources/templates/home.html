@@ -59,6 +59,17 @@
   	var code = sessionStorage.getItem("codeNumber");
 	console.log(code);
 	 window.location.href="/suppliers/"+ code; }
+	 
+	  function deleteProduct(codeNumber) {
+		sessionStorage.setItem('codeNumber', codeNumber);
+  	var code = sessionStorage.getItem("codeNumber");
+	console.log(code);
+	 window.location.href="/deleteProduct/"+ code; }
+	 
+	  function cerca() {
+		var name;
+		name = document.getElementById("name").value;
+	 window.location.href="/cerca/"+ name; }
 </script>
 
 </head>
@@ -69,6 +80,19 @@
   <div class="container">
     <!-- Aggiungi più prodotti qui -->
     
+    <div class="form-group mb-3">
+                            <label class="control-label"></label>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                class="form-control"
+                                placeholder="cerca"
+                            />
+                        </div>
+                        <a th:onclick="|cerca()|">Cerca</a>
+
+    
     	<tr th:each="Product: ${product}">
       <div class="container">
    <!-- <a href="product1.html" class="product-link"> -->
@@ -78,7 +102,7 @@
         <p class="price"><td> <span th:text = "${Product.description}">Default</span> </td> </p>
 		<p class="price"><td> <span th:text = "${Product.price}+'€'">Default</span> </td></p>
 		<a th:onclick="|toSuppliers('${Product.number_code}')|">Fornitori</a>	
-		
+		<a th:onclick="|deleteProduct('${Product.number_code}')|">Elimina</a>
 		
       </div>
     
