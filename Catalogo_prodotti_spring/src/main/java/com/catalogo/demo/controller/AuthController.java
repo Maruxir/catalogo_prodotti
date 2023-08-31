@@ -54,12 +54,20 @@ public class AuthController {
 		   return "home";
 		}
 	   
-	   @RequestMapping(value = "/cerca/{name}") 
-		public String cerca(Model model , @PathVariable String name) {
+	   @RequestMapping(value = "/cercaNome/{name}") 
+		public String cercaNome(Model model , @PathVariable String name) {
 			List<Product> product = productService.getProductByName(name);
 			model.addAttribute("product" , product);
 			
 			return "home";
 		}
+	   
+	   @RequestMapping(value = "/cercaFornitore/{name}") 
+	 		public String cercaFornitore(Model model , @PathVariable String name) {
+	 			List<Product> product = productService.getProductByFornitore(name);
+	 			model.addAttribute("product" , product);
+	 			
+	 			return "home";
+	 		}
 	  
 }

@@ -66,10 +66,15 @@
 	console.log(code);
 	 window.location.href="/deleteProduct/"+ code; }
 	 
-	  function cerca() {
+	  function cercaProdotto() {
 		var name;
-		name = document.getElementById("name").value;
-	 window.location.href="/cerca/"+ name; }
+		name = document.getElementById("nameProd").value;
+	 window.location.href="/cercaNome/"+ name; }
+	 
+	 	  function cercaSupplier() {
+		var name;
+		name = document.getElementById("nameSup").value;
+	 window.location.href="/cercaFornitore/"+ name; }
 </script>
 
 </head>
@@ -84,13 +89,24 @@
                             <label class="control-label"></label>
                             <input
                                 type="text"
-                                id="name"
-                                name="name"
+                                id="nameProd"
+                                name="nameProd"
                                 class="form-control"
-                                placeholder="cerca"
+                                placeholder="cercaProdotto"
                             />
                         </div>
-                        <a th:onclick="|cerca()|">Cerca</a>
+                        <a th:onclick="|cercaProdotto()|">Cerca</a>
+
+						<label class="control-label"></label>
+                            <input
+                                type="text"
+                                id="nameSup"
+                                name="nameSup"
+                                class="form-control"
+                                placeholder="cercaFornitore"
+                            />
+                        </div>
+                        <a th:onclick="|cercaSupplier()|">Cerca</a>
 
     
     	<tr th:each="Product: ${product}">
