@@ -88,7 +88,7 @@ public class AuthController {
 		} */
 	   
 
-		  @RequestMapping(value = "/creater") 
+		 /* @RequestMapping(value = "/creaReview") 
 				public void create(@RequestParam("review") String stringReview) {
 			  try {
 			        ObjectMapper objectMapper = new ObjectMapper();
@@ -97,11 +97,24 @@ public class AuthController {
 			   } catch (Exception e) {
 			        // Gestisci eventuali eccezioni di parsing JSON qui
 			    }
-			  }
+			  }*/
 	   
 	   @RequestMapping(value = "/addReview") 
 		public String addReview(Model model) {
+		   Review review = new Review(); // Crea un oggetto Review vuoto
+		    model.addAttribute("review", review);
 	   return "newComment"; }
+	   
+	   @RequestMapping("/createReview")
+	   public String create(Review review) {
+		   try {
+		   reviewService.create(review);
+		   } catch (Exception e) {
+			   e.printStackTrace();
+			   return "index";
+		   }
+		   return "index";
+	   }
 	   
 	   
 	  
