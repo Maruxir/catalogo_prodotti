@@ -42,9 +42,12 @@ public class SpringSecurity{
                                 .requestMatchers("/delete/{id}").permitAll()
                                 .requestMatchers("/deletePs/{id}").permitAll()
                                 .requestMatchers("/cercaNome/{name}").permitAll()
+                                //.requestMatchers("/creater").permitAll()
+                                .requestMatchers("/addReview").permitAll()
                                 .requestMatchers("/cercaFornitore/{name}").permitAll()
                                 .requestMatchers("/suppliers/{id}").permitAll()
                                 .requestMatchers("/supplier/{id}").permitAll()
+                                .requestMatchers("/creater").hasRole("CUSTOMER")
                                 .requestMatchers("/administrator").hasRole("ADMINISTRATOR")
                                 .requestMatchers("/products").hasRole("CUSTOMER")
                 ).formLogin(

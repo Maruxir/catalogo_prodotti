@@ -24,6 +24,14 @@ public class Review {
 	
 	private String comment;
 	
+	public Review() {
+		
+	}
+	
+	public Review(int id) {
+		this.review_id = id;
+	}
+	
 	public int getReview_id() {
 		return review_id;
 	}
