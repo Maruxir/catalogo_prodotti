@@ -19,6 +19,10 @@ public class ReviewService {
 	} */
 
 	public void create(Review review) {
+		int idCustomer= review.getCustomer().getId();
+		int idProduct=review.getProduct().getNumber_code();
+		Review r = reviewRepository.findCustomerProduct(idCustomer, idProduct);
+		if(r == null) {
 		ArrayList<Review> reviews = reviewRepository.findAll();
 		int max = 0;
 		for(Review idReview : reviews) {
@@ -26,8 +30,8 @@ public class ReviewService {
 				max = idReview.getReview_id();
 			}
 		}
-		review.setReview_id(max);
-		reviewRepository.save(review);
+		review.setReview_id(max+1);
+		reviewRepository.save(review); }
 	}
 
 

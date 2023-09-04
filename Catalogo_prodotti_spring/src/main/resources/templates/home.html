@@ -76,7 +76,10 @@
 		name = document.getElementById("nameSup").value;
 	 window.location.href="/cercaFornitore/"+ name; }
 	 
-	 
+	 function addReview(codeNumber) {
+		sessionStorage.setItem('codeNumber', codeNumber);
+  	var code = sessionStorage.getItem("codeNumber");
+	 window.location.href="/addReview"; }
 	 
 </script>
 
@@ -122,7 +125,7 @@
 		<p class="price"><td> <span th:text = "${Product.price}+'€'">Default</span> </td></p>
 		<a th:onclick="|toSuppliers('${Product.number_code}')|">Fornitori</a>	
 		<a th:onclick="|deleteProduct('${Product.number_code}')|">Elimina</a>
-		
+		<a th:onclick="|addReview('${Product.number_code}')|">AggiungiCommento</a>
       </div>
     
   </div>
