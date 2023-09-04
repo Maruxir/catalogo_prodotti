@@ -56,53 +56,25 @@
 </style>
 
 <script>  
-/*function Review() {
-    this.review_id = "";
-    this.number_code = "";
-    this.customer_id = "";
-    this.comment = "";
-}
-	var review = new Review();
+	document.addEventListener('DOMContentLoaded', function () {
+	    // Recupera il valore da sessionStorage
+	    var productValue = sessionStorage.getItem('codeNumber');
+	    // Imposta il valore predefinito per il campo del commento
+	    var productField = document.getElementById('productField');
+	    if (productValue) {
+	        productField.value = productValue;
+	        }
+	        
+	    var customerValue = sessionStorage.getItem('username');
+	    // Imposta il valore predefinito per il campo del commento
+	    var customerField = document.getElementById('customerField');
+	    if (customerValue) {
+	        customerField.value = customerValue;
+	        }    
+	}  
 	
-	function addReview(){
-		comment = document.getElementById("review").value;
-		review.review_id = 1;
-		review.number_code = 1;
-		review.customer_id= 1;
-		review.comment = comment;
-		
-		 var jsonString = JSON.stringify(review);
-    	window.location.href = "/creaReview/?review=" + encodeURIComponent(jsonString);
-		
-		 //window.location.href="/creater/" + review;  
-	}  */
-	
-document.addEventListener('DOMContentLoaded', function () {
-    // Recupera il valore da sessionStorage
-    var productValue = sessionStorage.getItem('codeNumber');
-    // Imposta il valore predefinito per il campo del commento
-    var productField = document.getElementById('productField');
-    if (productValue) {
-        productField.value = productValue;
-    }
-    
-       // Recupera il valore da sessionStorage
-    var customerValue = sessionStorage.getItem('username');
-    // Imposta il valore predefinito per il campo del commento
-    var customerField = document.getElementById('customerField');
-    if (customerValue) {
-        customerField.value = customerValue;
-    }
-        
-        // Invia il valore al server tramite un campo nascosto nel form
-      /*  var hiddenInput = document.createElement('input');
-        hiddenInput.type = 'hidden';
-        hiddenInput.name = 'review.product'; // Assicurati che il nome corrisponda al campo nel tuo oggetto Review
-        hiddenInput.value = productValue;
-        document.querySelector('form').appendChild(hiddenInput);*/
-    }
-);
 
+);
 </script>
 
 </head>
@@ -110,29 +82,15 @@ document.addEventListener('DOMContentLoaded', function () {
   <header class="header">
     commento
   </header>
-  <div class="container">
-    <!-- Aggiungi più prodotti qui -->
-    
-    <div class="form-group mb-3">
-                            <label class="control-label"></label>
-                            <input
-                                type="text"
-                                id="review"
-                                name="review"
-                                class="form-control"
-                                placeholder="Aggiungi una recensione..."
-                            />
-                        </div>
-                        <a href="#" onclick="addReview();">INVIA</a>
   
-  </div>
-  
-  	<form action = "#" th:action="@{/createReview}" th:object="${review}" method="GET">
-		<label>Prodotto</label><textarea name="product" th:field="*{product}" id="productField"></textarea>
-		<label>Utente</label><textarea name="user" th:field="*{customer}" id="customerField"></textarea>
-		<label>Commento</label><input type="text" name="comment" th:field="*{comment}"/>
-		<button name="submit" type="submit" value="0">Submit</button>
-	</form>
+	
+		<form action = "/createReview" method="post">
+			<input type="text" name="email" id="customerField" placeholder="Email" readOnly>
+			<input type="text" name="prodotto" id="productField" placeholder="Email" readOnly>
+		    <textarea name="testoCommento" placeholder="Commento"></textarea>
+		    <input type="submit" value="Invia">
+		</form>
+	
 
 </body>
 </html>

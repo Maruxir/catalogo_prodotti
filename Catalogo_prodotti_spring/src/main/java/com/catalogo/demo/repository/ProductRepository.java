@@ -30,4 +30,5 @@ public interface ProductRepository extends CrudRepository<Product, Integer>{
 			+ "On p.number_code = f.prod_number_code", nativeQuery = true)
 	List<Product> getByFornitore(String name);
 	
+	Product findById(int id);
 }

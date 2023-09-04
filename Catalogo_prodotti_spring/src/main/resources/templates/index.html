@@ -11,6 +11,15 @@
           crossorigin="anonymous">
 </head>
 <body>
+
+<script>
+function miaFunzione() {
+	
+	var customerValue = sessionStorage.getItem('id');
+    alert("ho salvato" + customerValue);
+}
+</script>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" th:href="@{/index}">Registration and Login System</a>
@@ -30,6 +39,8 @@
 <div class="container">
     <div class="row">
         <h1 class="text-center"> Registration and Login System </h1>
+        
+        <button onclick="miaFunzione()">Clicca qui</button>
     </div>
 </div>
 </body>

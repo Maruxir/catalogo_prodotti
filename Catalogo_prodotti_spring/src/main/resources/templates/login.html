@@ -11,6 +11,17 @@
           crossorigin="anonymous">
 </head>
 <body>
+<script>	
+	function redirectTo() {
+				var username;
+				username = document.getElementById("username").value;
+				sessionStorage.setItem("username", username);
+				console.log(username);
+				//document.getElementById("message").innerHTML=(username);
+				 loginForm.submit();
+			}	
+</script>
+
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
@@ -72,7 +83,7 @@
                             />
                         </div>
                         <div class="form-group mb-3">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary" onclick="redirectTo()">Submit</button>
                         </div>
                     </form>
                 </div>

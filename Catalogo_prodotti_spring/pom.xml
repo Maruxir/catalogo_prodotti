@@ -63,6 +63,11 @@
     <artifactId>json</artifactId>
     <version>20210307</version> <!-- o l'ultima versione disponibile -->
 </dependency>
+
+<dependency>
+    <groupId>org.springframework.session</groupId>
+    <artifactId>spring-session-core</artifactId>
+</dependency>
 	</dependencies>
 
 	<build>

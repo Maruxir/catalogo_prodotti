@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,10 +15,10 @@ import jakarta.persistence.OneToMany;
 
 @Entity
 public class Customer {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int customer_id;
+	private int customer_id; 
+
 	private String email;
 	private String password;
 	
@@ -41,7 +42,7 @@ public class Customer {
 		return customer_id;
 	}
 	public void setId(int id) {
-		this.customer_id = id;
+		this.customer_id = id; 
 	}
 	public String getEmail() {
 		return email;

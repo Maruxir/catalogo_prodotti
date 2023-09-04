@@ -3,27 +3,32 @@ package com.catalogo.demo.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.catalogo.demo.model.Customer;
 import com.catalogo.demo.model.Product;
 import com.catalogo.demo.model.Review;
 import com.catalogo.demo.model.Supplier;
+import com.catalogo.demo.service.CustomerService;
 import com.catalogo.demo.service.ProductService;
 import com.catalogo.demo.service.ReviewService;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class AuthController {
 	@Autowired
 		public ProductService productService;
+	
+	@Autowired
+	public CustomerService customerService;
 	
 	@Autowired
 	public ReviewService reviewService;
@@ -36,13 +41,12 @@ public class AuthController {
 	   @GetMapping("/login")
 	    public String login(){
 	        return "login";
-	    }
+	    } 
 	   
-	   @RequestMapping(value = "/products") 
+	  @RequestMapping(value = "/products") 
 		public String Products(Model model) {
 			ArrayList<Product> product = productService.getProduct();
 			model.addAttribute("product" , product);
-			
 			return "home";
 		}
 	   
@@ -77,45 +81,25 @@ public class AuthController {
 	 			return "home";
 	 		}
 	   
-	 /*  @RequestMapping(value = "/addReviews/{review}") 
-		public String addReview(Model model , @PathVariable Review review) {
-		   	reviewService.create(review);
-			/*List<Product> product = productService.getProductByFornitore(name);
-			model.addAttribute("product" , product);
-			
-			return "home";
-			return "home";
-		} */
 	   
-
-		 /* @RequestMapping(value = "/creaReview") 
-				public void create(@RequestParam("review") String stringReview) {
-			  try {
-			        ObjectMapper objectMapper = new ObjectMapper();
-			        Review review = objectMapper.readValue(stringReview, Review.class);
-			        reviewService.create(review);
-			   } catch (Exception e) {
-			        // Gestisci eventuali eccezioni di parsing JSON qui
-			    }
-			  }*/
-	   
-	   @RequestMapping(value = "/addReview") 
+	  @RequestMapping(value = "/addReview") 
 		public String addReview(Model model) {
-		   Review review = new Review(); // Crea un oggetto Review vuoto
+		   Review review = new Review();
 		    model.addAttribute("review", review);
 	   return "newComment"; }
 	   
+	   	
 	   @RequestMapping("/createReview")
-	   public String create(Review review) {
-		   try {
-		   reviewService.create(review);
-		   } catch (Exception e) {
-			   e.printStackTrace();
-			   return "index";
-		   }
+	   public String create(@RequestParam("email") String email, @RequestParam("testoCommento") String testoCommento, @RequestParam("prodotto") int idProdotto) {
+		   Review review = new Review();
+		   Customer customer = customerService.findByEmail(email);
+	        review.setCustomer(customer);
+	        review.setComment(testoCommento);
+	        Product product = productService.findById(idProdotto);
+	        review.setProduct(product);
+	        reviewService.create(review);
 		   return "index";
 	   }
-	   
 	   
 	  
 }

@@ -39,6 +39,7 @@ public class SpringSecurity{
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers("/Customer").permitAll()
                                 .requestMatchers("/index").permitAll()
+                                .requestMatchers("/custo").permitAll()
                                 .requestMatchers("/delete/{id}").permitAll()
                                 .requestMatchers("/deletePs/{id}").permitAll()
                                 .requestMatchers("/cercaNome/{name}").permitAll()

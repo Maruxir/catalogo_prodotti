@@ -41,7 +41,7 @@ public class ProductService {
 		productRepository.deleteById(id);
 	}
 
-	public Optional<Product> findById(int code) {
+	public Product findById(int code) {
 		return productRepository.findById(code);
 	}
 

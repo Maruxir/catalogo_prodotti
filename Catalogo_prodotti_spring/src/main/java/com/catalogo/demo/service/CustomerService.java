@@ -23,4 +23,8 @@ public class CustomerService {
 		return customer.getPassword();
 	}
 
+	public Customer findByEmail(String email) {
+		return repository.findByEmail(email);
+	}
+
 }
