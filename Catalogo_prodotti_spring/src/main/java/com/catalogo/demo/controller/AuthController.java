@@ -15,6 +15,7 @@ import com.catalogo.demo.model.Customer;
 import com.catalogo.demo.model.Product;
 import com.catalogo.demo.model.Review;
 import com.catalogo.demo.model.Supplier;
+import com.catalogo.demo.response.EmailReviewResponse;
 import com.catalogo.demo.service.CustomerService;
 import com.catalogo.demo.service.ProductService;
 import com.catalogo.demo.service.ReviewService;
@@ -50,11 +51,18 @@ public class AuthController {
 			return "home";
 		}
 	   
-	   @RequestMapping(value = "/suppliers/{id}") 
-		public String Suppliers(Model model , @PathVariable int id) {
+	   @RequestMapping(value = "/suppliers/{id}/{email}") 
+		public String Suppliers(Model model , @PathVariable int id, @PathVariable String email) {
 		  // Product product = productService.findById(id);
 			List<Supplier> supplier = productService.getSuppliers(id);
 			model.addAttribute("supplier" , supplier);
+			
+			List<Review> reviews = reviewService.getReviewsByProduct(id);
+			model.addAttribute("review", reviews);
+			
+			Customer customer = customerService.findByEmail(email);
+			Review reviewByCustomer = reviewService.findByCustomerProduct(customer.getId(), id);
+			model.addAttribute("reviewByCustomer", reviewByCustomer);
 			
 			return "products";
 		}
@@ -101,5 +109,19 @@ public class AuthController {
 		   return "index";
 	   }
 	   
-	  
+	   @RequestMapping("/updateReview")
+	   public String update(@RequestParam("testoCommento") String testoCommento, @RequestParam("idCommento") int idCommento) {
+		   Review review = reviewService.getById(idCommento);
+	        review.setComment(testoCommento);
+	        reviewService.update(review);
+		   return "index";
+	   } 
+	   
+	   @RequestMapping("/updateReviewPage")
+	   public String updatePage(Model model) {
+		   Review review = new Review();
+		    model.addAttribute("review", review);
+		   return "updateComment";
+	   }
+	   
 }

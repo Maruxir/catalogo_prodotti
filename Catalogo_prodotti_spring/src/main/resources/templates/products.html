@@ -8,28 +8,13 @@
     function cancellato() {
       alert("Prenotazione cancellata");
     }
-    function toPrenotabili() {
-  	var username = sessionStorage.getItem("user");
-	console.log(username);
-	 window.location.href="/prenotabiliAllievo/"+username; }
 	 
-	function toPrenotati() {
-  	var username = sessionStorage.getItem("user");
-	console.log(username);
-	 window.location.href="/prenotatiAllievo/"+username; }
+	function updateReview(id) {
+	sessionStorage.setItem('idReview', id);
+	 window.location.href="/updateReviewPage"; }
   </script>
 </head>
 <body>
-
-
-
-<ul class="ulnavbar">
-  <li class="navbar"><a onclick="toPrenotabili()">Lista Esami Prenotabili</a></li>
-  <li class="navbar"><a  onclick="toPrenotati()">Esami Prenotati</a></li>
-  <li class="navbar" style="float:right"><a href="/home">Logout</a></li>
-</ul>
-
-
 
 <h2>Prodotti disponibili</h2><br>
 
@@ -38,7 +23,7 @@
 <div class="tabEsami">
 
 
-    <table id="esami">
+    <table id="fornitori">
      <tr>
         <th>Nome</th>
         <th>Indirizzo</th>
@@ -49,16 +34,38 @@
 		<td> <span th:text = "${Supplier.name}">Default</span> </td>
 		<td> <span th:text = "${Supplier.address}">Default</span> </td>
 		<td> <span th:text = "${Supplier.email}">Default</span> </td>
-		 	
-		<td> <form action='/suppliers/'  method="post"> 
-		 <button type="submit">Supplier</button>
-		    	</form>
-		    	</td>
-		    	
-		
-		
 	</tr>
-
+    </table>
+    
+    
+       <table id="commenti">
+     <tr>
+        <th>Commento</th>
+      </tr>
+     	
+	<tr th:each="Review: ${review}">
+		<td> <span th:text = "${Review.customer.email}">Default</span> </td>
+		<td> <span th:text = "${Review.comment}">Default</span> </td>
+	</form>
+	</td>
+		    		
+	</tr>
+    </table>
+    
+    
+      <table id="commenti">
+     <tr>
+        <th>MioCommento</th>
+      </tr>
+     	
+	<tr th:each="Review: ${reviewByCustomer}">
+		<td> <span th:text = "${Review.customer.email}">Default</span> </td>
+		<td> <span th:text = "${Review.comment}">Default</span> </td>
+		<td><a th:onclick="|updateReview('${Review.review_id}')|">AggiungiCommento</a></td>
+	</form>
+	</td>
+		    		
+	</tr>
     </table>
 
   </form>

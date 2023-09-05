@@ -38,6 +38,8 @@ public class SpringSecurity{
         http.csrf().disable()
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers("/Customer").permitAll()
+                                .requestMatchers("/updateReviewPage").permitAll()
+                                .requestMatchers("/updateReview").permitAll()
                                 .requestMatchers("/index").permitAll()
                                 .requestMatchers("/custo").permitAll()
                                 .requestMatchers("/delete/{id}").permitAll()
@@ -46,7 +48,7 @@ public class SpringSecurity{
                                 .requestMatchers("/createReview").permitAll()
                                 .requestMatchers("/addReview").permitAll()
                                 .requestMatchers("/cercaFornitore/{name}").permitAll()
-                                .requestMatchers("/suppliers/{id}").permitAll()
+                                .requestMatchers("/suppliers/{id}/{email}").permitAll()
                                 .requestMatchers("/supplier/{id}").permitAll()
                                 .requestMatchers("/creater").hasRole("CUSTOMER")
                                 .requestMatchers("/administrator").hasRole("ADMINISTRATOR")
