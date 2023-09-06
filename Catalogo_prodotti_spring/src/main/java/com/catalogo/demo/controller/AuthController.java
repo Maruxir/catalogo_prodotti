@@ -67,11 +67,11 @@ public class AuthController {
 			return "products";
 		}
 	   
-	   @RequestMapping(value = "/deleteProduct/{id}") 
+	   /*@RequestMapping(value = "/deleteProduct/{id}") 
 		public String deleteProduct(Model model, @PathVariable int id) {
 		   productService.delete(id);
 		   return "home";
-		}
+		} */
 	   
 	   @RequestMapping(value = "/cercaNome/{name}") 
 		public String cercaNome(Model model , @PathVariable String name) {
@@ -110,7 +110,8 @@ public class AuthController {
 	   }
 	   
 	   @RequestMapping("/updateReview")
-	   public String update(@RequestParam("testoCommento") String testoCommento, @RequestParam("idCommento") int idCommento) {
+	   public String update(@RequestParam("testoCommento") String testoCommento, 
+			   @RequestParam("idCommento") int idCommento) {
 		   Review review = reviewService.getById(idCommento);
 	        review.setComment(testoCommento);
 	        reviewService.update(review);

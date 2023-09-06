@@ -22,7 +22,7 @@ public class Supplier {
 	private int supplier_id;
 	private String name;
 	private String email;
-	private String password;
+	private String surname;
 	private String address;
 	
 	/*@ManyToMany
@@ -55,11 +55,11 @@ public class Supplier {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getPassword() {
-		return password;
+	public String getSurname() {
+		return surname;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 	public String getAddress() {
 		return address;

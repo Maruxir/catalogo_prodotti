@@ -2,15 +2,12 @@ package com.catalogo.demo.repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.catalogo.demo.model.Customer;
 import com.catalogo.demo.model.Product;
-import com.catalogo.demo.model.Supplier;
 
 @Repository
 public interface ProductRepository extends CrudRepository<Product, Integer>{
@@ -31,4 +28,6 @@ public interface ProductRepository extends CrudRepository<Product, Integer>{
 	List<Product> getByFornitore(String name);
 	
 	Product findById(int id);
+	
+	Product save(Product product);
 }

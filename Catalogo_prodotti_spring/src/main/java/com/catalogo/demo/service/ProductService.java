@@ -64,5 +64,24 @@ public class ProductService {
 		 }
 		
 	} */
+	
+	public void save(Product product) {
+		int max = 0;
+		ArrayList<Product> products = productRepository.findAll();
+		for(Product idProduct : products) {
+			if(idProduct.getNumber_code() > max) {
+				max = idProduct.getNumber_code();
+			}	
+		}
+		max = max+1;
+		product.setNumber_code(max);
+		productRepository.save(product);
+	}
+
+	public void update(Product product, int code) {
+		Product prod = productRepository.findById(code);
+		productRepository.save(product);
+		
+	}
 
 }

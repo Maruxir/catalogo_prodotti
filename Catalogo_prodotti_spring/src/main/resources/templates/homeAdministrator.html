@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ecommerce</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+  }
+
+  .header {
+    background-color: #3498db;
+    color: #ffffff;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .product {
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    margin: 15px;
+    padding: 15px;
+    text-align: center;
+  }
+
+  .product img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+
+  .product h2 {
+    margin-top: 0;
+    font-size: 18px;
+  }
+
+  .price {
+    font-weight: bold;
+    color: #e74c3c;
+    margin-top: 10px;
+  }
+</style>
+<script>  function toSuppliers(codeNumber) {
+		sessionStorage.setItem('codeNumber', codeNumber);
+  	var code = sessionStorage.getItem("codeNumber");
+	console.log(code);
+	var email = sessionStorage.getItem("username");
+	console.log(email)
+	 window.location.href="/suppliers/"+code+ "/"+email;}
+	 
+	function deleteProduct(codeNumber) {
+		sessionStorage.setItem('codeNumber', codeNumber);
+  	var code = sessionStorage.getItem("codeNumber");
+	console.log(code);
+	 window.location.href="/deleteProduct/"+ code; }
+	 
+	function deleteSupplier(idSupplier) {
+	sessionStorage.setItem('idSupplier', idSupplier);
+  	var supplier = sessionStorage.getItem("idSupplier");
+	console.log(supplier);
+	window.location.href="/deleteSupplier/"+ supplier; }
+	 
+	function addProduct() {
+		window.location.href="/addP";}
+		
+	function addSupplier() {
+		window.location.href="/newSupplier";}
+		
+	function updateProduct(codeNumber, name, description, price) {
+		sessionStorage.setItem('codeNumber', codeNumber);
+		var code = sessionStorage.getItem("codeNumber");
+		console.log(code);
+		window.location.href="/updateProductCall";}
+	 
+</script>
+
+</head>
+<body>
+  <header class="header">
+    <h1>Sistemi Informativi sul Web</h1>
+  </header>
+  
+  <div>
+  	<p><a th:onclick="|addProduct()|">Aggiungi prodotto</a></p>
+  	<p><a th:onclick="|addSupplier()|">Aggiungi fornitore</a></p>
+  </div>
+  
+  <div class="container">
+    	<tr th:each="Product: ${products}">
+   <!-- <a href="product1.html" class="product-link"> -->
+      <div class="product">
+       <!--<img src="./product.png" -->
+        <h2><td> <span th:text = "${Product.name}">Default</span> </td></h2>
+        <p class="price"><td> <span th:text = "${Product.description}">Default</span> </td> </p>
+		<p class="price"><td> <span th:text = "${Product.price}+'€'">Default</span> </td></p>
+		<p><a th:onclick="|toSuppliers('${Product.number_code}')|">Fornitori</a></p>	
+		<p><a th:onclick="|deleteProduct('${Product.number_code}')|">Elimina</a></p>
+		<p><a th:onclick="|updateProduct('${Product.number_code}')|">Modifica</a></p>
+		
+			 
+      </div>   
+  </div>
+  
+  <div><table id="fornitori">
+     <tr>
+        <th>Nome</th>
+        <th>Indirizzo</th>
+        <th>Email</th>
+      </tr>
+     	
+	<tr th:each="Supplier: ${suppliers}">
+		<td> <span th:text = "${Supplier.name}">Default</span> </td>
+		<td> <span th:text = "${Supplier.address}">Default</span> </td>
+		<td> <span th:text = "${Supplier.email}">Default</span> </td>
+		<td><a th:onclick="|deleteSupplier('${Supplier.supplier_id}')|">Elimina</a></td>
+	</tr>
+    </table>
+  </div> 
+</body>
+</html>
