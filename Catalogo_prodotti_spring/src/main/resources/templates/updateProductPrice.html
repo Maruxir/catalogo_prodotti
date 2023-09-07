@@ -53,7 +53,6 @@
     color: #e74c3c;
     margin-top: 10px;
   }
-
   
   .add {
 	background-color:#ffec64;
@@ -88,6 +87,34 @@
 </style>
 
 <script>  
+	document.addEventListener('DOMContentLoaded', function () {
+	    var codeValue = sessionStorage.getItem('codeNumber');
+	    var idProductField = document.getElementById('idProductField');
+	    if (codeValue) {
+	        idProductField.value = codeValue;
+	        }
+	        
+	   /*	var nameValue = sessionStorage.getItem('nameProduct');
+	    var nameField = document.getElementById('nameField');
+	    if (nameValue) {
+	        nameField.value = nameValue;
+	        }  
+	        
+	    var priceValue = sessionStorage.getItem('price');
+	    var priceField = document.getElementById('priceField');
+	    if (priceValue) {
+	        priceField.value = priceValue;
+	        }  
+	        
+	    var descriptionValue = sessionStorage.getItem('description');
+	    var descriptionField = document.getElementById('descriptionField');
+	    if (descriptionValue) {
+	        descriptionField.value = descriptionValue; 
+	        } */
+	}  
+	
+
+);
 </script>
 
 </head>
@@ -97,14 +124,14 @@
   </header>
   
   <div class="product">
-  <h2><td>     <span>Aggiungi prodotto</span>    </td></h2>
+  <h2><td>     <span>Aggiorna prezzo</span>    </td></h2>
   <hr>
-		<form action = "/addProduct" method="post">
-			<td><input name="name" placeholder="nomeProdotto"></input></td>
-			<p class="price"><td><input name="description" placeholder="descrizione prodotto"></input> </td> </p>
-		    <p class="price"><td><input name="price" placeholder="prezzo"></input>  </td></p>
-		    <hr>
-		    <input type="submit" value="Invia" class="add">
+	
+		<form action = "/updateProductPrice" method="post">
+		<td><input type="text" name="code_number" id="idProductField" readOnly> </td>
+		<p class="price"><td><input type="text" name="price" id="priceField" placeholder="price"> </td></p> 
+		<hr>
+		<input type="submit" value="Invia" class="add">
 		</form>
 	
 

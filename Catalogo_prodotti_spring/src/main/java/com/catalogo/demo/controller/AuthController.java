@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.catalogo.demo.model.Customer;
 import com.catalogo.demo.model.Product;
+import com.catalogo.demo.model.Product_supplier;
 import com.catalogo.demo.model.Review;
 import com.catalogo.demo.model.Supplier;
 import com.catalogo.demo.response.EmailReviewResponse;
@@ -57,6 +58,9 @@ public class AuthController {
 			List<Supplier> supplier = productService.getSuppliers(id);
 			model.addAttribute("supplier" , supplier);
 			
+			
+			//List<Product_supplier> list = productService.findByProductId(id);
+
 			List<Review> reviews = reviewService.getReviewsByProduct(id);
 			model.addAttribute("review", reviews);
 			
@@ -124,5 +128,6 @@ public class AuthController {
 		    model.addAttribute("review", review);
 		   return "updateComment";
 	   }
+	   
 	   
 }

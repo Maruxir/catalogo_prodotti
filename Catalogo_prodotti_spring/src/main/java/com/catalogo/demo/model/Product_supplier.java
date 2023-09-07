@@ -21,7 +21,8 @@ public class Product_supplier {
 	    @JoinColumn(name = "supplier_id")
 	private Supplier supplier;
 	
-	
+	public Product_supplier() {}
+	 
 	public int getId_ps() {
 		return id_ps;
 	}
@@ -38,6 +39,6 @@ public class Product_supplier {
 		return supplier;
 	}
 	public void setId_supplier(Supplier id_supplier) {
-		this.supplier = supplier;
+		this.supplier = id_supplier;
 	}
 }

@@ -17,6 +17,7 @@
     color: #ffffff;
     padding: 10px;
     text-align: center;
+    
   }
 
   .container {
@@ -26,8 +27,8 @@
     align-items: flex-start;
     padding: 20px;
   }
-  
-   .text {
+
+  .text {
             flex: 1; /* Flessibilità per il testo in modo che occupi lo spazio disponibile */
         }
 
@@ -54,13 +55,12 @@
   }
 
   .price {
-	font-weight: bold;
-    font-size: 18px;
+    font-weight: bold;
     color: #e74c3c;
     margin-top: 10px;
   }
-  
-   .myButton {
+
+  .myButton {
 	background-color:#44c767;
 	border-radius:28px;
 	border:1px solid #18ab29;
@@ -134,7 +134,7 @@ input[type=text], select {
   border-radius: 4px;
   box-sizing: border-box;
 }
-  
+
 </style>
 <script>  function toSuppliers(codeNumber) {
 		sessionStorage.setItem('codeNumber', codeNumber);
@@ -177,15 +177,6 @@ input[type=text], select {
 	function addSupplierProduct(codeNumber) {
 		sessionStorage.setItem('codeNumber', codeNumber);
 		window.location.href="/addProductSupplierCall";}
-		
-	function updateSupplierAddress(idSupplier) {
-		sessionStorage.setItem('idSupplier', idSupplier);
-		window.location.href="/updateSupplierAddressCall";}
-		
-	function updateSupplierEmail(idSupplier) {
-		sessionStorage.setItem('idSupplier', idSupplier);
-		window.location.href="/updateSupplierEmailCall";}
-
 	 
 </script>
 
@@ -193,65 +184,102 @@ input[type=text], select {
 <body>
   <header class="header">
     <h1>Sistemi Informativi sul Web</h1>
+
   </header>
   
   <div>
   	<p><a th:onclick="|addProduct()|">Aggiungi prodotto</a></p>
+  	<p><a th:onclick="|addSupplier()|">Aggiungi fornitore</a></p>
   </div>
+  <div class="container">
+    <tr th:each="Product: ${products}">
+  <!-- <a href="product1.html" class="product-link"> -->
+    <div class="product">
+     <!--<img src="./product.png" -->
+     <h2><td>     <span>Aggiungi prodotto</span>    </td></h2>
+     <hr>
+      <td><input type="text" id="fname" name="firstname" placeholder="Nome prodotto">    </td> 
+      <p class="price"><td>     <input type="text" id="fname" name="firstname" placeholder="Descrizione">    </td> </p>
+  <p class="price"><td>     <input type="text" id="fname" name="firstname" placeholder="Prezzo">
+  </td></p>
   
+  <hr>
+   <a href="#" class="add">Aggiungi</a>
+  
+     
+    </div>   
+  </div>
   <div class="container">
     	<tr th:each="Product: ${products}">
    <!-- <a href="product1.html" class="product-link"> -->
       <div class="product">
        <!--<img src="./product.png" -->
-        <h2><td> <span th:text = "${Product.name}">Prodotto</span> <a th:onclick="|updateProductName('${Product.number_code}')|" class="myButton">Modifica</a></td></h2>
-        <!--<h2><td> <span th:text = "${Product.name}">Default</span> </td></h2> -->
-        <hr> 
-        <p class="price"><td> <span th:text = "${Product.description}">Default</span> <a th:onclick="|updateProductDescription('${Product.number_code}')|" class="myButton">Modifica</a></td> </p>
-		<p class="price"><td> <span th:text = "${Product.price}+'€'">Default</span> <a th:onclick="|updateProductPrice('${Product.number_code}')|" class="myButton">Modifica</a> </td></p>
-		<hr>
-		
-		<a th:onclick="|deleteProduct('${Product.number_code}')|" class="remove">Rimuovi</a>
+        <h2><td> <span th:text = "${Product.name}">Prodotto</span> <a href="#" class="myButton">Modifica</a></td></td></h2>
+        <hr>
+        <p class="price"><td> <span th:text = "${Product.description}">Descrizione</span><a href="#" class="myButton">Modifica</a></td> </td> </p>
+		<p class="price"><td> <span th:text = "${Product.price}+'€'">Prezzo</span> <a href="#" class="myButton">Modifica</a></td></td></p>
+    <hr>
 		<p><a th:onclick="|toSuppliers('${Product.number_code}')|">Fornitori</a></p>	
-	<!--<p><a th:onclick="|deleteProduct('${Product.number_code}')|">Elimina</a></p>
+		<p><a th:onclick="|deleteProduct('${Product.number_code}')|">Elimina</a></p>
 		<p><a th:onclick="|updateProductName('${Product.number_code}')|">ModificaNome</a></p>
 		<p><a th:onclick="|updateProductDescription('${Product.number_code}')|">ModificaDescrizione</a></p>
-		<p><a th:onclick="|updateProductPrice('${Product.number_code}')|">ModificaPrezzo</a></p> -->
-		<p><a th:onclick="|addSupplierProduct('${Product.number_code}')|">Aggiungi fornitore</a></p>		 
+		<p><a th:onclick="|updateProductPrice('${Product.number_code}')|">ModificaPrezzo</a></p>
+		<p><a th:onclick="|addSupplierProduct('${Product.number_code}')|">Aggiungi fornitore</a></p>
+		<hr>
+    <a href="#" class="remove">Rimuovi</a>
+			 
       </div>   
   </div>
+<hr>
+  <div class="container">
+  <tr th:each="Product: ${products}">
+<!-- <a href="product1.html" class="product-link"> -->
+  <div class="product">
+   <!--<img src="./product.png" -->
+   <h2><td>     <span>Aggiungi prodotto</span>    </td></h2>
+     <hr>
+    <td><input type="text" id="fname" name="firstname" placeholder="Nome fornitore"></td>
+    <p class="price"><td>     <input type="text" id="fname" name="firstname" placeholder="Indirizzo">    </td> </p>
+<p class="price"><td>     <input type="text" id="fname" name="firstname" placeholder="Email">
+</td></p>
+
+<hr>
+ <a href="#" class="add">Aggiungi</a>
+
+   
+  </div>   
+</div>
+  <div class="container">
+    <tr th:each="Product: ${products}">
+ <!-- <a href="product1.html" class="product-link"> -->
+    <div class="product">
+     <!--<img src="./product.png" -->
+      <h2><td> <span th:text = "${Product.name}">Fornitore2</span> <a href="#" class="myButton">Modifica</a> </td></h2> 
+      <hr>
+      <p class="price"><td> <span th:text = "${Product.description}">Indirizzo</span> <a href="#" class="myButton">Modifica</a></td> </p>
+  <p class="price"><td> <span th:text = "${Product.price}+'€'">Email</span> <a href="#" class="myButton">Modifica</a></td></p>
   
   <hr>
+   <a href="#" class="remove">Rimuovi</a>
   
-   <div>
-  	<p><a th:onclick="|addSupplier()|">Aggiungi fornitore</a></p>
-  </div>
+     
+    </div>   
+</div>
   
-  <div class="container">
-  <!--<table id="fornitori">
+  <div><table id="fornitori">
      <tr>
         <th>Nome</th>
         <th>Indirizzo</th>
         <th>Email</th>
-      </tr> -->
+      </tr>
      	
 	<tr th:each="Supplier: ${suppliers}">
-	<div class="product">
-		<h2><td> <span th:text = "${Supplier.name}">Default</span><span th:text ="' '+${Supplier.surname}">Default</span> </td></h2> 
-		<hr>
-		<p class = "price"><td> <span th:text = "${Supplier.address}">Default</span> <a th:onclick="|updateSupplierAddress('${Supplier.supplier_id}')|" class="myButton">Modifica</a></td> </p>
-		<p class="price"><td> <span th:text = "${Supplier.email}">Default</span> <a th:onclick="|updateSupplierEmail('${Supplier.supplier_id}')|" class="myButton">Modifica</a></td></p> 
-		<!--<td><a th:onclick="|deleteSupplier('${Supplier.supplier_id}')|">Elimina</a></td>
-		<td><a th:onclick="|updateSupplierAddress('${Supplier.supplier_id}')|">ModificaIndirizzo</a></td>
-		<td><a th:onclick="|updateSupplierEmail('${Supplier.supplier_id}')|">ModificaEmail</a></td> -->
-	     <hr>
-  			<a th:onclick="|deleteSupplier('${Supplier.supplier_id}')|" class="remove">Rimuovi</a>
-	    </div>   
-</div>
-	
+		<td> <span th:text = "${Supplier.name}">Default</span> </td>
+		<td> <span th:text = "${Supplier.address}">Default</span> </td>
+		<td> <span th:text = "${Supplier.email}">Default</span> </td>
+		<td><a th:onclick="|deleteSupplier('${Supplier.supplier_id}')|">Elimina</a></td>
 	</tr>
     </table>
-      
-  </divclass="container"> 
+  </div> 
 </body>
 </html>

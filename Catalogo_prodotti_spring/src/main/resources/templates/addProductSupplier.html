@@ -53,41 +53,21 @@
     color: #e74c3c;
     margin-top: 10px;
   }
-
-  
-  .add {
-	background-color:#ffec64;
-	border-radius:28px;
-	border:1px solid #ffaa22;
-	display:inline-block;
-	cursor:pointer;
-	color:#333333;
-	font-family:Arial;
-	font-size:11px;
-	padding:10px 20px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #ffee66;
-}
-.add:hover {
-	background-color:#ffab23;
-}
-.add:active {
-	position:relative;
-	top:1px;
-}
-  
-  input[type=text], select {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box; 
-  }
 </style>
 
 <script>  
+	document.addEventListener('DOMContentLoaded', function () {
+	    // Recupera il valore da sessionStorage
+	    var productValue = sessionStorage.getItem('codeNumber');
+	    // Imposta il valore predefinito per il campo del commento
+	    var productField = document.getElementById('productField');
+	    if (productValue) {
+	        productField.value = productValue;
+	        }
+	}  
+	
+
+);
 </script>
 
 </head>
@@ -96,16 +76,17 @@
     commento
   </header>
   
-  <div class="product">
-  <h2><td>     <span>Aggiungi prodotto</span>    </td></h2>
-  <hr>
-		<form action = "/addProduct" method="post">
-			<td><input name="name" placeholder="nomeProdotto"></input></td>
-			<p class="price"><td><input name="description" placeholder="descrizione prodotto"></input> </td> </p>
-		    <p class="price"><td><input name="price" placeholder="prezzo"></input>  </td></p>
-		    <hr>
-		    <input type="submit" value="Invia" class="add">
+	
+		<form action = "/addProductSupplier" method="post">
+			<input type="text" name="code_number" id="productField" placeholder="Email" readOnly>
+		    <textarea name="emailSupplier" placeholder="emailSupplier"></textarea>
+		    <input type="submit" value="Invia">
 		</form>
+		
+		<!--<option th:each="Supplier : ${suppliers}"
+	                   th:value="${Supplier.name}"
+	                    th:text="${Supplier.email}">
+	            </option> -->
 	
 
 </body>

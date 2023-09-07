@@ -53,8 +53,8 @@
     color: #e74c3c;
     margin-top: 10px;
   }
-
   
+   
   .add {
 	background-color:#ffec64;
 	border-radius:28px;
@@ -88,6 +88,17 @@
 </style>
 
 <script>  
+	document.addEventListener('DOMContentLoaded', function () {
+	    var supplierValue = sessionStorage.getItem('idSupplier');
+	    var idSupplierField = document.getElementById('idSupplierField');
+	    if (supplierValue) {
+	        idSupplierField.value = supplierValue;
+	        }
+	        
+	}  
+	
+
+);
 </script>
 
 </head>
@@ -95,14 +106,14 @@
   <header class="header">
     commento
   </header>
-  
   <div class="product">
   <h2><td>     <span>Aggiungi prodotto</span>    </td></h2>
   <hr>
-		<form action = "/addProduct" method="post">
-			<td><input name="name" placeholder="nomeProdotto"></input></td>
-			<p class="price"><td><input name="description" placeholder="descrizione prodotto"></input> </td> </p>
-		    <p class="price"><td><input name="price" placeholder="prezzo"></input>  </td></p>
+	
+		<form action = "/updateSupplierEmail" method="post">
+			<td><input type="text" name="id_supplier" id="idSupplierField" readOnly> </td>
+			
+		    <p class="price"><td><input type="text" name="email" id="emailField" placeholder="email"> </td> </p>
 		    <hr>
 		    <input type="submit" value="Invia" class="add">
 		</form>

@@ -35,5 +35,18 @@ public class SupplierService {
 		supplier.setSupplier_id(max);
 		supplierRepository.save(supplier);
 	}
+	
+	public Supplier findByEmail(String email) {
+		return supplierRepository.findByEmail(email);
+	}
+
+	public Supplier findById(int idSupplier) {
+		return supplierRepository.findById(idSupplier);
+	}
+
+	public void update(Supplier supplier) {
+		supplierRepository.save(supplier);
+		
+	}
 		
 }

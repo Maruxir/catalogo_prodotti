@@ -78,10 +78,8 @@ public class ProductService {
 		productRepository.save(product);
 	}
 
-	public void update(Product product, int code) {
-		Product prod = productRepository.findById(code);
+	public void update(Product product) {
 		productRepository.save(product);
-		
 	}
 
 }

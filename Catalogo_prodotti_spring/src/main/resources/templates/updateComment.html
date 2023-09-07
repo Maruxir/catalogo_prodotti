@@ -53,6 +53,36 @@
     color: #e74c3c;
     margin-top: 10px;
   }
+  .add {
+	background-color:#ffec64;
+	border-radius:28px;
+	border:1px solid #ffaa22;
+	display:inline-block;
+	cursor:pointer;
+	color:#333333;
+	font-family:Arial;
+	font-size:11px;
+	padding:10px 20px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffee66;
+}
+.add:hover {
+	background-color:#ffab23;
+}
+.add:active {
+	position:relative;
+	top:1px;
+}
+  
+  input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; 
+  }
 </style>
 
 <script>  
@@ -90,13 +120,16 @@
     commento
   </header>
   
-	
+	<div class="product">
+  <h2><td>     <span>Aggiorna commento</span>    </td></h2>
+  <hr>
 		<form action = "/updateReview"  method="post">
-			<input type="text" name="email" id="customerField" placeholder="Email" readOnly>
-			<input type="text" name="prodotto" id="productField" placeholder="Email" readOnly>
-			<input type="text" name="idCommento" id="idCommentField" placeholder="Email" readOnly>
-		    <textarea name="testoCommento" placeholder="Commento"></textarea>
-		    <input type="submit" value="Invia">
+			<td><input type="text" name="email" id="customerField" placeholder="Email" readOnly></td>
+			<p class="price"><td><input type="text" name="prodotto" id="productField" placeholder="Email" readOnly> </td></p>
+			 <p class="price"><td><input type="text" name="idCommento" id="idCommentField" placeholder="Email" readOnly> </td></p>
+		    <p class="price"><td><textarea name="testoCommento" placeholder="Commento"></textarea></td></p>
+		    <hr>
+		    <input type="submit" value="Invia" class="add">
 		</form>
 	
 
