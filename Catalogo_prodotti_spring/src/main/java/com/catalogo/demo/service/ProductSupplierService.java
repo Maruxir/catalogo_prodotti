@@ -21,10 +21,11 @@ public class ProductSupplierService {
 		return productSupplierRepository.findByProduct(id);
 	}
 
-	public void create(Product_supplier productSupplier) {
-		productSupplierRepository.save(productSupplier);
+	public void save(Product_supplier product_supplier) {
+		productSupplierRepository.save(product_supplier);
 		
 	}
+
 
 	
 	

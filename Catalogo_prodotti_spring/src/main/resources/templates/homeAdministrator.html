@@ -142,7 +142,7 @@ input[type=text], select {
 	console.log(code);
 	var email = sessionStorage.getItem("username");
 	console.log(email)
-	 window.location.href="/suppliers/"+code+ "/"+email;}
+	 window.location.href="/suppliers/"+code+"/"+email;}
 	 
 	function deleteProduct(codeNumber) {
 		sessionStorage.setItem('codeNumber', codeNumber);
@@ -176,7 +176,9 @@ input[type=text], select {
 		
 	function addSupplierProduct(codeNumber) {
 		sessionStorage.setItem('codeNumber', codeNumber);
-		window.location.href="/addProductSupplierCall";}
+		var code = sessionStorage.getItem("codeNumber");
+		console.log(code);
+		window.location.href="/addProductSupplierCall/" + code;}
 		
 	function updateSupplierAddress(idSupplier) {
 		sessionStorage.setItem('idSupplier', idSupplier);

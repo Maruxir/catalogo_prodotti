@@ -35,9 +35,9 @@ public class AuthController {
 	@Autowired
 	public ReviewService reviewService;
 	
-	  @GetMapping("/index")
+	  @GetMapping("/home")
 	    public String home(){
-	        return "index";
+	        return "home1";
 	    }
 	  
 	   @GetMapping("/login")

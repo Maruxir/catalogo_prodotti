@@ -204,27 +204,42 @@ public class AuthAdministratorController {
 			return "updateSupplierEmail";
 		}
 	   
-	   @RequestMapping(value = "/addProductSupplier") 
-		public String addProductSupplier(Model model, @RequestParam("code_number") int code_number, @RequestParam("emailSupplier") String email) {
-		   
-		   Product_supplier productSupplier = new Product_supplier();
-		   Product product = productService.findById(code_number);
+	
+	   @RequestMapping(value = "/addProductSupplier")
+	   public String addProductSupplier(Model model, @RequestParam("code_number") int code, @RequestParam("email_Supplier") String email) {
+		   Product product =productService.findById(code);
 		   Supplier supplier = supplierService.findByEmail(email);
-		   
-		   if(supplier != null && product != null) {
-			   productSupplier.setId_product(product);
-			   productSupplier.setId_supplier(supplier);
-			   productSupplierService.create(productSupplier);
+		   if(product != null && supplier != null) {
+			   Product_supplier product_supplier = new Product_supplier();
+			   product_supplier.setId_product(product);
+			   product_supplier.setId_supplier(supplier);
+			   productSupplierService.save(product_supplier);
 		   }
 		   
 		   updateModel(model);
 		   return "homeAdministrator";
-		}
+	   }
 	   
-	   @RequestMapping(value = "/addProductSupplierCall") 
-		public String addProductSupplierCall() {
-			return "addProductSupplier";
-		}
+	   @RequestMapping(value = "/addProductSupplierCall/{id}")
+	   public String addProductSupplierCall(Model model, @PathVariable int id) {
+		   boolean exist = false;
+		   ArrayList<Supplier> otherSupplier = new ArrayList<Supplier>();
+		   ArrayList<Supplier> allSuppliers = supplierService.findAll();
+		   ArrayList<Supplier> productSupplier= productService.getSuppliers(id);
+		   for(Supplier a : allSuppliers) {
+			   for(Supplier b : productSupplier) {
+				   if(b.getSupplier_id() == a.getSupplier_id()) {
+					   exist = true;
+				   }
+			   }
+			   if(!exist) {
+				   otherSupplier.add(a);
+			   }
+			   exist = false;
+		   }
+		   model.addAttribute("suppliers", otherSupplier);
+		   return "addProductSupplier";
+	   }
 	   
 	   
 }

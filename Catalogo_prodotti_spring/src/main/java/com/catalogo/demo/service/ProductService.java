@@ -1,16 +1,16 @@
 package com.catalogo.demo.service;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.catalogo.demo.model.Product;
+import com.catalogo.demo.model.Product_supplier;
 import com.catalogo.demo.model.Supplier;
 import com.catalogo.demo.repository.ProductRepository;
+import com.catalogo.demo.repository.ProductSupplierRepository;
 import com.catalogo.demo.repository.SupplierRepository;
 
 @Service
@@ -20,20 +20,21 @@ public class ProductService {
 	private ProductRepository productRepository;
 	@Autowired
 	private SupplierRepository supplierRepository;
+	@Autowired
+	private ProductSupplierRepository productSupplierRepository;
+
 
 	public ArrayList<Product> getProduct() {
 		return productRepository.findAll();
 	}
-
-	public List<Supplier> getSuppliers(int id) {
-		List<Supplier> suppliers = new ArrayList<Supplier>();
-		 List<Integer> suppliersId = productRepository.getSuppliers(id);
-		 for(Integer supplierId: suppliersId) {
-			 Optional<Supplier> supplier = supplierRepository.findById(supplierId);
-			Supplier valueSupplier = supplier.orElse(null);
-			suppliers.add(valueSupplier);
-		 }
-		 return suppliers;
+	
+	public ArrayList<Supplier> getSuppliers(int id) {
+		ArrayList<Product_supplier> productSupplier = productSupplierRepository.findAllByProduct(id);
+		ArrayList<Supplier> supplier = new ArrayList<Supplier>();
+		for(Product_supplier ps : productSupplier) {
+			supplier.add(ps.getId_supplier());
+		}
+		return supplier;
 	}
 	
 

@@ -53,6 +53,36 @@
     color: #e74c3c;
     margin-top: 10px;
   }
+  .add {
+	background-color:#ffec64;
+	border-radius:28px;
+	border:1px solid #ffaa22;
+	display:inline-block;
+	cursor:pointer;
+	color:#333333;
+	font-family:Arial;
+	font-size:11px;
+	padding:10px 20px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffee66;
+}
+.add:hover {
+	background-color:#ffab23;
+}
+.add:active {
+	position:relative;
+	top:1px;
+}
+  
+  input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; 
+  }
 </style>
 
 <script>  
@@ -73,20 +103,25 @@
 </head>
 <body>
   <header class="header">
-    commento
+    <h1>Sistemi Informativi sul Web</h1>
   </header>
   
+  <div class="product">
+  <h2><td>     <span>Aggiungi fotnitore</span>    </td></h2>
+  <hr>
 	
 		<form action = "/addProductSupplier" method="post">
-			<input type="text" name="code_number" id="productField" placeholder="Email" readOnly>
-		    <textarea name="emailSupplier" placeholder="emailSupplier"></textarea>
-		    <input type="submit" value="Invia">
+			<td><input type="text" name="code_number" id="productField" placeholder="Email" readOnly></td>
+		   	<p class="price"><td><select id="supplierSelect" name="email_Supplier">
+		   		<option th:each="Supplier : ${suppliers}"
+	                    th:text="${Supplier.email}">
+	            </option>
+	       	</select></td> </p>
+		    <!--<p class="price"><td><textarea name="email_Supplier" placeholder="emailSupplier"></textarea> </td> </p>-->
+		    <hr>
+		    <input type="submit" value="Invia" class="add">
 		</form>
 		
-		<!--<option th:each="Supplier : ${suppliers}"
-	                   th:value="${Supplier.name}"
-	                    th:text="${Supplier.email}">
-	            </option> -->
 	
 
 </body>
