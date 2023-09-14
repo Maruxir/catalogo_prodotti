@@ -28,6 +28,14 @@
     padding: 20px;
   }
   
+    .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
    .text {
             flex: 1; /* Flessibilità per il testo in modo che occupi lo spazio disponibile */
         }
@@ -37,6 +45,7 @@
     border-radius: 5px;
     box-shadow: 0px 2px 4px rgba(109, 85, 85, 0.1);
     width: 300px;
+    height:500px;
     margin: 15px;
     padding: 15px;
     text-align: center;
@@ -97,7 +106,7 @@
 .remove {
 	background-color:#a8228b;
 	border-radius:28px;
-	border:1px solid #ab1940;
+	border:3px solid #ab1940;
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
@@ -123,11 +132,12 @@
 	display:inline-block;
 	cursor:pointer;
 	color:#333333;
-	font-family:Arial;
+	font-family:Cambria;
 	font-size:11px;
 	padding:10px 20px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #ffee66;
+	width:150px;
 }
 .add:hover {
 	background-color:#ffab23;
@@ -146,6 +156,46 @@ input[type=text], select {
   border-radius: 4px;
   box-sizing: border-box;
 }
+
+.home {
+	
+	border-radius:28px;
+	border:3px solid rgb(0, 0, 0);
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:11px;
+	padding:10px 20px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c92fa2;
+	height: 30px;
+	width:30px;
+	float:left;
+	display:block;
+}
+.new {
+	background-color:#ffec64;
+	border-radius:28px;
+	border:1px solid #ffaa22;
+	display:inline-block;
+	cursor:pointer;
+	color:#333333;
+	font-family:Cambria;
+	font-size:11px;
+	padding:10px 20px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffee66;
+}
+ .supplier {
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(109, 85, 85, 0.1);
+    width: 300px;
+    margin: 15px;
+    padding: 15px;
+    text-align: center;
+ }
+	
   
 </style> 
 <script> 
@@ -208,28 +258,17 @@ input[type=text], select {
 </head>
 <body>
   <header class="header">
-    <h1>Sistemi Informativi sul Web</h1>
-    <a th:onclick="|home()|" class="remove">home</a>
+  <a th:onclick="|home()|" class="home"><img src="https://www.freeiconspng.com/uploads/home-page-icon-0.png" width="30" alt="home" /></a></a>
+    <h1>Catalogo</h1>
+    
   </header>
-  
-  <div>
-  	<p><a class="add" th:onclick="|addProduct()|">
-  	<img src="https://www.freeiconspng.com/uploads/empty-image-icon-png-8.png" width="40" alt="aggiungi" />
-  	<img src="https://www.freeiconspng.com/uploads/add-icon--mono-general-icons--softiconsm-24.png" width="20" alt="prodotto" /></a></p>
-  	
-
-
-  	 
-  	 
-  	 
-  </div>
   
   <div class="container">
     	<tr th:each="Product: ${products}">
       <div class="product">
       	<img src="https://www.freeiconspng.com/uploads/empty-image-icon-png-8.png" width="60"/>
         <h2><td> <span th:text = "${Product.name}">Prodotto</span> <a th:onclick="|updateProductName('${Product.number_code}')|" class="myButton">  <img src="https://www.freeiconspng.com/uploads/edit-editor-pen-pencil-write-icon--4.png" 
-        alt="Modifica" width="12" height="12"></a></td>
+        alt="Modifica" width="12" height="12"></a></td></h2>
         <hr> 
         <p class="description"><td> <span th:text = "${Product.description}">Default</span> <a th:onclick="|updateProductDescription('${Product.number_code}')|" class="myButton">
         <img src="https://www.freeiconspng.com/uploads/edit-editor-pen-pencil-write-icon--4.png" alt="Modifica" width="12" height="12"></a></td></p>
@@ -238,25 +277,25 @@ input[type=text], select {
 		<img src="https://www.freeiconspng.com/uploads/edit-editor-pen-pencil-write-icon--4.png" alt="Modifica" width="12" height="12"></a> </td></p>
 		<hr>
 		
-		<a th:onclick="|deleteProduct('${Product.number_code}')|" class="remove">
-		<img src="https://www.freeiconspng.com/uploads/remove-icon-png-31.png" width="16" height="16" alt="Elimina" /></a></a>
+		
 		<p><a class="add" th:onclick="|details('${Product.number_code}')|">DETTAGLI</a></p>	
-		<p><a class="add" th:onclick="|addSupplierProduct('${Product.number_code}')|">Aggiungi fornitore</a></p>		 
+		<p><a class="add" th:onclick="|addSupplierProduct('${Product.number_code}')|">AGGIUNGI FORNITORE</a></p>
+		<a th:onclick="|deleteProduct('${Product.number_code}')|" class="remove">
+		<img src="https://www.freeiconspng.com/uploads/remove-icon-png-31.png" width="16" height="16" alt="Elimina" /></a></a>		 
       </div>   
+  </div>
+  
+   <div class = "buttons">
+  	<p><a class="new" th:onclick="|addProduct()|">
+  	<img src="https://www.freeiconspng.com/uploads/empty-image-icon-png-8.png" width="60" alt="aggiungi" />
+  	<img src="https://www.freeiconspng.com/uploads/add-icon--mono-general-icons--softiconsm-24.png" width="30" alt="prodotto" /></a></p> 
   </div>
   
   <hr>
   
-   <div>
-  	<p><a class="add" th:onclick="|addSupplier()|">
-  	<img src="https://www.freeiconspng.com/uploads/--tie-user-users-work-worker-working-icon--icon-search-engine-6.png" width="40" alt="fornitore" />
-  	  	<img src="https://www.freeiconspng.com/uploads/add-icon--mono-general-icons--softiconsm-24.png" width="20" alt="aggiungi" /></a></p>
-  	
-  </div>
-  
   <div class="container">
 	<tr th:each="Supplier: ${suppliers}">
-	<div class="product">
+	<div class="supplier">
 		<img src="https://www.freeiconspng.com/uploads/--tie-user-users-work-worker-working-icon--icon-search-engine-6.png" width="60"/>
 		<h2><td> <span th:text = "${Supplier.name}">Default</span><span th:text ="' '+${Supplier.surname}">Default</span> </td></h2> 
 		<hr>
@@ -269,6 +308,13 @@ input[type=text], select {
   		<img src="https://www.freeiconspng.com/uploads/remove-icon-png-31.png" width="16" height="16" alt="Elimina" /></a>
 	    </div>   
 </div>
+
+   <div class = "buttons">
+  	<p><a class="new" th:onclick="|addSupplier()|">
+  	<img src="https://www.freeiconspng.com/uploads/--tie-user-users-work-worker-working-icon--icon-search-engine-6.png" width="60" alt="fornitore" />
+  	  	<img src="https://www.freeiconspng.com/uploads/add-icon--mono-general-icons--softiconsm-24.png" width="30" alt="aggiungi" /></a></p>
+  	
+  </div>
 	
 	</tr>
     </table>
