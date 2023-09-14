@@ -81,9 +81,8 @@
 	cursor:pointer;
 	color:#333333;
 	font-family:Arial;
-	font-size:35px;
-	padding:20px 100px;
-	width: 200px;
+	font-size:11px;
+	padding:10px 20px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #ffee66;
 }
@@ -95,29 +94,78 @@
 	top:1px;
 }
   </style>
-<script>
-  	function customer() {
-	 window.location.href="/products"; }
-	 
-	function administrator() {
-	 window.location.href="/homeAdministrator"; }
+  <script>
+    function home() {
+      window.location.href="/homeCustomer";
+    } 
+	function updateReview(id) {
+	sessionStorage.setItem('idReview', id);
+	 window.location.href="/updateReviewPage"; }
   </script>
 </head>
 <body>
-   <header class="header">
+
+  <header class="header">
     <h1>Sistemi Informativi sul Web</h1>
+    <td><a class = "add" th:onclick="|home()|">home</a></td>
+    
   </header>
 
 <div class= "container">
 <div class="product">
 
-		<a class="add" onclick="customer()">Utente</a>
-		<br>
-		<br>
-		<a class="add" onclick="administrator()">Amministratore</a>
+	<h2>Lista fornitori</h2>
+	<hr>
+    <table>
+    <thead>
+     <tr>
+        <th>Nome</th>
+        <th>Cognome</th>
+        <th>Indirizzo</th>
+        <th>Email</th>
+      </tr>
+     	
+	<tr th:each="Supplier: ${supplier}">
+		<td> <span th:text = "${Supplier.name}">Default</span> </td>
+		<td> <span th:text = "${Supplier.surname}">Default</span> </td>
+		<td> <span th:text = "${Supplier.address}">Default</span> </td>
+		<td> <span th:text = "${Supplier.email}">Default</span> </td>
+	</tr>
+    </thead>
+    </table>
+   <hr> 
+    <br>
+	<h2>Commenti</h2>
+	<hr>    
+       <table>
+     <tr>
+        <th>Utente</th>
+        <th>Commento</th>
+      </tr>
+     	
+	<tr th:each="Review: ${review}">
+		<td> <span th:text = "${Review.customer.email}">Default</span> </td>
+		<td> <span th:text = "${Review.comment}">Default</span> </td>
+	</form>
+	</td>
+		    		
+	</tr>
+    </table>
+    <hr>
+    
+      <table>
+     	
+	<tr th:each="Review: ${reviewByCustomer}">
+		<td> <span th:text = "${Review.customer.email}">Default</span> </td>
+		<td> <span th:text = "${Review.comment}">Default</span> </td>
+		<td><a class = "add" th:onclick="|updateReview('${Review.review_id}')|">modifica</a></td>
+	</form>
+	</td>
+		    		
+	</tr>
+    </table>
 
-
-	
+  </form>
 </div>
 </div>
 </body>

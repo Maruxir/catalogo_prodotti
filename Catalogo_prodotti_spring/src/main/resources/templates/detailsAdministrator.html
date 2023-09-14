@@ -95,19 +95,16 @@
 }
   </style>
   <script>
-    function cancellato() {
-      alert("Prenotazione cancellata");
-    }
-	 
-	function updateReview(id) {
-	sessionStorage.setItem('idReview', id);
-	 window.location.href="/updateReviewPage"; }
+  	function home() {
+      window.location.href="/homeAdministrator";
+    } 
   </script>
 </head>
 <body>
 
   <header class="header">
     <h1>Sistemi Informativi sul Web</h1>
+     <a th:onclick="|home()|" class="remove">home</a>
   </header>
 
 <div class= "container">
@@ -128,7 +125,7 @@
 		<td> <span th:text = "${Supplier.name}">Default</span> </td>
 		<td> <span th:text = "${Supplier.surname}">Default</span> </td>
 		<td> <span th:text = "${Supplier.address}">Default</span> </td>
-		<td> <span th:text = "${Supplier.email}">Default</span> </td>
+		<td> <b><span th:text = "${Supplier.email}">Default</span></b> </td>
 	</tr>
     </thead>
     </table>
@@ -143,21 +140,8 @@
       </tr>
      	
 	<tr th:each="Review: ${review}">
-		<td> <span th:text = "${Review.customer.email}">Default</span> </td>
+		<td> <i><span th:text = "${Review.customer.email}">Default</span></i> </td>
 		<td> <span th:text = "${Review.comment}">Default</span> </td>
-	</form>
-	</td>
-		    		
-	</tr>
-    </table>
-    <hr>
-    
-      <table>
-     	
-	<tr th:each="Review: ${reviewByCustomer}">
-		<td> <span th:text = "${Review.customer.email}">Default</span> </td>
-		<td> <span th:text = "${Review.comment}">Default</span> </td>
-		<td><a class = "add" th:onclick="|updateReview('${Review.review_id}')|">Modifica</a></td>
 	</form>
 	</td>
 		    		

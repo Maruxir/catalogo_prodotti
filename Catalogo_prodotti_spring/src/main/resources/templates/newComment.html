@@ -86,6 +86,10 @@
 </style>
 
 <script>  
+	  function home() {
+      window.location.href="/homeCustomer";
+    }
+    
 	document.addEventListener('DOMContentLoaded', function () {
 	    // Recupera il valore da sessionStorage
 	    var productValue = sessionStorage.getItem('codeNumber');
@@ -111,6 +115,7 @@
 <body>
    <header class="header">
     <h1>Sistemi Informativi sul Web</h1>
+        <td><a class = "add" th:onclick="|home()|">home</a></td>
   </header>
   <div class="product">
   <h2><td>     <span>Aggiungi commento</span>    </td></h2>

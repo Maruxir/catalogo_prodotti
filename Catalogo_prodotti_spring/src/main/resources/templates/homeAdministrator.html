@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ecommerce</title>
+
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -35,7 +36,7 @@
     background-color: #ffffff;
     border-radius: 5px;
     box-shadow: 0px 2px 4px rgba(109, 85, 85, 0.1);
-    width: 250px;
+    width: 300px;
     margin: 15px;
     padding: 15px;
     text-align: center;
@@ -52,10 +53,18 @@
     font-size: 22px;
     flex: 1; 
   }
+  
+    .description {
+	font-weight: bold;
+    font-size: 18px;
+    color: rgb(0, 128, 255);
+    margin-top: 10px;
+     text-align: center;
+  }
 
   .price {
 	font-weight: bold;
-    font-size: 18px;
+    font-size: 30px;
     color: #e74c3c;
     margin-top: 10px;
   }
@@ -64,7 +73,6 @@
 	background-color:#44c767;
 	border-radius:28px;
 	border:1px solid #18ab29;
-	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
 	font-family:Arial;
@@ -74,7 +82,10 @@
 	text-shadow:0px 1px 0px #2f6627;
   float: right;
   margin-left: 10px;
+  height: 10px;
+  width: auto;	
 }
+
 .myButton:hover {
 	background-color:#5cbf2a;
 }
@@ -95,6 +106,7 @@
 	padding:10px 20px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #c92fa2;
+	height: 20px;
 }
 .remove:hover {
 	background-color:#bf355a;
@@ -135,14 +147,16 @@ input[type=text], select {
   box-sizing: border-box;
 }
   
-</style>
-<script>  function toSuppliers(codeNumber) {
+</style> 
+<script> 
+	function home() {
+      window.location.href="/homeAdministrator";
+    } 
+ 	function details(codeNumber) {
 		sessionStorage.setItem('codeNumber', codeNumber);
   	var code = sessionStorage.getItem("codeNumber");
 	console.log(code);
-	var email = sessionStorage.getItem("username");
-	console.log(email)
-	 window.location.href="/suppliers/"+code+"/"+email;}
+	 window.location.href="/detailsAdministrator/"+code;}
 	 
 	function deleteProduct(codeNumber) {
 		sessionStorage.setItem('codeNumber', codeNumber);
@@ -157,10 +171,10 @@ input[type=text], select {
 	window.location.href="/deleteSupplier/"+ supplier; }
 	 
 	function addProduct() {
-		window.location.href="/addP";}
+		window.location.href="/addProductCall";}
 		
 	function addSupplier() {
-		window.location.href="/newSupplier";}
+		window.location.href="/addSupplierCall";}
 		
 	function updateProductName(codeNumber) {
 		sessionStorage.setItem('codeNumber', codeNumber);
@@ -195,59 +209,64 @@ input[type=text], select {
 <body>
   <header class="header">
     <h1>Sistemi Informativi sul Web</h1>
+    <a th:onclick="|home()|" class="remove">home</a>
   </header>
   
   <div>
-  	<p><a th:onclick="|addProduct()|">Aggiungi prodotto</a></p>
+  	<p><a class="add" th:onclick="|addProduct()|">
+  	<img src="https://www.freeiconspng.com/uploads/empty-image-icon-png-8.png" width="40" alt="aggiungi" />
+  	<img src="https://www.freeiconspng.com/uploads/add-icon--mono-general-icons--softiconsm-24.png" width="20" alt="prodotto" /></a></p>
+  	
+
+
+  	 
+  	 
+  	 
   </div>
   
   <div class="container">
     	<tr th:each="Product: ${products}">
-   <!-- <a href="product1.html" class="product-link"> -->
       <div class="product">
-       <!--<img src="./product.png" -->
-        <h2><td> <span th:text = "${Product.name}">Prodotto</span> <a th:onclick="|updateProductName('${Product.number_code}')|" class="myButton">Modifica</a></td></h2>
-        <!--<h2><td> <span th:text = "${Product.name}">Default</span> </td></h2> -->
+      	<img src="https://www.freeiconspng.com/uploads/empty-image-icon-png-8.png" width="60"/>
+        <h2><td> <span th:text = "${Product.name}">Prodotto</span> <a th:onclick="|updateProductName('${Product.number_code}')|" class="myButton">  <img src="https://www.freeiconspng.com/uploads/edit-editor-pen-pencil-write-icon--4.png" 
+        alt="Modifica" width="12" height="12"></a></td>
         <hr> 
-        <p class="price"><td> <span th:text = "${Product.description}">Default</span> <a th:onclick="|updateProductDescription('${Product.number_code}')|" class="myButton">Modifica</a></td> </p>
-		<p class="price"><td> <span th:text = "${Product.price}+'€'">Default</span> <a th:onclick="|updateProductPrice('${Product.number_code}')|" class="myButton">Modifica</a> </td></p>
+        <p class="description"><td> <span th:text = "${Product.description}">Default</span> <a th:onclick="|updateProductDescription('${Product.number_code}')|" class="myButton">
+        <img src="https://www.freeiconspng.com/uploads/edit-editor-pen-pencil-write-icon--4.png" alt="Modifica" width="12" height="12"></a></td></p>
+		<br>
+		<p class="price"><td> <span th:text = "${Product.price}+'€'">Default</span> <a th:onclick="|updateProductPrice('${Product.number_code}')|" class="myButton">
+		<img src="https://www.freeiconspng.com/uploads/edit-editor-pen-pencil-write-icon--4.png" alt="Modifica" width="12" height="12"></a> </td></p>
 		<hr>
 		
-		<a th:onclick="|deleteProduct('${Product.number_code}')|" class="remove">Rimuovi</a>
-		<p><a th:onclick="|toSuppliers('${Product.number_code}')|">Fornitori</a></p>	
-	<!--<p><a th:onclick="|deleteProduct('${Product.number_code}')|">Elimina</a></p>
-		<p><a th:onclick="|updateProductName('${Product.number_code}')|">ModificaNome</a></p>
-		<p><a th:onclick="|updateProductDescription('${Product.number_code}')|">ModificaDescrizione</a></p>
-		<p><a th:onclick="|updateProductPrice('${Product.number_code}')|">ModificaPrezzo</a></p> -->
-		<p><a th:onclick="|addSupplierProduct('${Product.number_code}')|">Aggiungi fornitore</a></p>		 
+		<a th:onclick="|deleteProduct('${Product.number_code}')|" class="remove">
+		<img src="https://www.freeiconspng.com/uploads/remove-icon-png-31.png" width="16" height="16" alt="Elimina" /></a></a>
+		<p><a class="add" th:onclick="|details('${Product.number_code}')|">DETTAGLI</a></p>	
+		<p><a class="add" th:onclick="|addSupplierProduct('${Product.number_code}')|">Aggiungi fornitore</a></p>		 
       </div>   
   </div>
   
   <hr>
   
    <div>
-  	<p><a th:onclick="|addSupplier()|">Aggiungi fornitore</a></p>
+  	<p><a class="add" th:onclick="|addSupplier()|">
+  	<img src="https://www.freeiconspng.com/uploads/--tie-user-users-work-worker-working-icon--icon-search-engine-6.png" width="40" alt="fornitore" />
+  	  	<img src="https://www.freeiconspng.com/uploads/add-icon--mono-general-icons--softiconsm-24.png" width="20" alt="aggiungi" /></a></p>
+  	
   </div>
   
   <div class="container">
-  <!--<table id="fornitori">
-     <tr>
-        <th>Nome</th>
-        <th>Indirizzo</th>
-        <th>Email</th>
-      </tr> -->
-     	
 	<tr th:each="Supplier: ${suppliers}">
 	<div class="product">
+		<img src="https://www.freeiconspng.com/uploads/--tie-user-users-work-worker-working-icon--icon-search-engine-6.png" width="60"/>
 		<h2><td> <span th:text = "${Supplier.name}">Default</span><span th:text ="' '+${Supplier.surname}">Default</span> </td></h2> 
 		<hr>
-		<p class = "price"><td> <span th:text = "${Supplier.address}">Default</span> <a th:onclick="|updateSupplierAddress('${Supplier.supplier_id}')|" class="myButton">Modifica</a></td> </p>
-		<p class="price"><td> <span th:text = "${Supplier.email}">Default</span> <a th:onclick="|updateSupplierEmail('${Supplier.supplier_id}')|" class="myButton">Modifica</a></td></p> 
-		<!--<td><a th:onclick="|deleteSupplier('${Supplier.supplier_id}')|">Elimina</a></td>
-		<td><a th:onclick="|updateSupplierAddress('${Supplier.supplier_id}')|">ModificaIndirizzo</a></td>
-		<td><a th:onclick="|updateSupplierEmail('${Supplier.supplier_id}')|">ModificaEmail</a></td> -->
-	     <hr>
-  			<a th:onclick="|deleteSupplier('${Supplier.supplier_id}')|" class="remove">Rimuovi</a>
+		<p class = "price"><td> <span th:text = "${Supplier.address}">Default</span> <a th:onclick="|updateSupplierAddress('${Supplier.supplier_id}')|" class="myButton">
+		<img src="https://www.freeiconspng.com/uploads/edit-editor-pen-pencil-write-icon--4.png" alt="Modifica" width="12" height="12"></a></td></h2></a></td> </p>
+		<p class="price"><td> <span th:text = "${Supplier.email}">Default</span> <a th:onclick="|updateSupplierEmail('${Supplier.supplier_id}')|" class="myButton">
+		<img src="https://www.freeiconspng.com/uploads/edit-editor-pen-pencil-write-icon--4.png" alt="Modifica" width="12" height="12"></a></td></h2></a></td></p> 
+	    <hr>
+  		<a th:onclick="|deleteSupplier('${Supplier.supplier_id}')|" class="remove">
+  		<img src="https://www.freeiconspng.com/uploads/remove-icon-png-31.png" width="16" height="16" alt="Elimina" /></a>
 	    </div>   
 </div>
 	

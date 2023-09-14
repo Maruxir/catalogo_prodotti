@@ -1,6 +1,7 @@
 package com.catalogo.demo.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,13 +9,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.catalogo.demo.model.Product;
 import com.catalogo.demo.model.Product_supplier;
+import com.catalogo.demo.model.Review;
 import com.catalogo.demo.model.Supplier;
 import com.catalogo.demo.service.ProductService;
 import com.catalogo.demo.service.ProductSupplierService;
+import com.catalogo.demo.service.ReviewService;
 import com.catalogo.demo.service.SupplierService;
 
 @Controller
@@ -27,6 +29,9 @@ public class AuthAdministratorController {
 	
 	@Autowired 
 	ProductSupplierService productSupplierService;
+	
+	@Autowired
+	ReviewService reviewService;
 	
 	  private void updateModel(Model model) {
 	        ArrayList<Product> products = productService.getProduct();
@@ -73,7 +78,7 @@ public class AuthAdministratorController {
 			return "homeAdministrator";
 		}
 	
-	   @RequestMapping(value = "/addP") 
+	   @RequestMapping(value = "/addProductCall") 
 		public String newProduct() {
 			return "newProduct";
 		}
@@ -92,7 +97,7 @@ public class AuthAdministratorController {
 			return "homeAdministrator";
 		}
 	   
-	   @RequestMapping(value = "/newSupplier") 
+	   @RequestMapping(value = "/addSupplierCall") 
 		public String newSupplier() {
 			return "newSupplier";
 		}
@@ -240,6 +245,18 @@ public class AuthAdministratorController {
 		   model.addAttribute("suppliers", otherSupplier);
 		   return "addProductSupplier";
 	   }
+	   
+	   @RequestMapping(value = "/detailsAdministrator/{id}") 
+		public String Suppliers(Model model , @PathVariable int id) {
+		  // Product product = productService.findById(id);
+			List<Supplier> supplier = productService.getSuppliers(id);
+			model.addAttribute("supplier" , supplier);
+
+			List<Review> reviews = reviewService.getReviewsByProduct(id);
+			model.addAttribute("review", reviews);
+			
+			return "detailsAdministrator";
+		}
 	   
 	   
 }

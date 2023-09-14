@@ -35,9 +35,14 @@ public class AuthController {
 	@Autowired
 	public ReviewService reviewService;
 	
+	 private void updateModel(Model model) {
+	        ArrayList<Product> products = productService.getProduct();
+	        model.addAttribute("product", products);
+	    }
+	
 	  @GetMapping("/home")
 	    public String home(){
-	        return "home1";
+	        return "home";
 	    }
 	  
 	   @GetMapping("/login")
@@ -45,21 +50,17 @@ public class AuthController {
 	        return "login";
 	    } 
 	   
-	  @RequestMapping(value = "/products") 
+	  @RequestMapping(value = "/homeCustomer") 
 		public String Products(Model model) {
-			ArrayList<Product> product = productService.getProduct();
-			model.addAttribute("product" , product);
-			return "home";
+			updateModel(model);
+			return "homeCustomer";
 		}
 	   
-	   @RequestMapping(value = "/suppliers/{id}/{email}") 
+	   @RequestMapping(value = "/details/{id}/{email}") 
 		public String Suppliers(Model model , @PathVariable int id, @PathVariable String email) {
 		  // Product product = productService.findById(id);
 			List<Supplier> supplier = productService.getSuppliers(id);
 			model.addAttribute("supplier" , supplier);
-			
-			
-			//List<Product_supplier> list = productService.findByProductId(id);
 
 			List<Review> reviews = reviewService.getReviewsByProduct(id);
 			model.addAttribute("review", reviews);
@@ -68,21 +69,15 @@ public class AuthController {
 			Review reviewByCustomer = reviewService.findByCustomerProduct(customer.getId(), id);
 			model.addAttribute("reviewByCustomer", reviewByCustomer);
 			
-			return "products";
+			return "detailsCustomer";
 		}
-	   
-	   /*@RequestMapping(value = "/deleteProduct/{id}") 
-		public String deleteProduct(Model model, @PathVariable int id) {
-		   productService.delete(id);
-		   return "home";
-		} */
-	   
+	    
 	   @RequestMapping(value = "/cercaNome/{name}") 
 		public String cercaNome(Model model , @PathVariable String name) {
 			List<Product> product = productService.getProductByName(name);
 			model.addAttribute("product" , product);
 			
-			return "home";
+			return "homeCustomer";
 		}
 	   
 	   @RequestMapping(value = "/cercaFornitore/{name}") 
@@ -90,7 +85,7 @@ public class AuthController {
 	 			List<Product> product = productService.getProductByFornitore(name);
 	 			model.addAttribute("product" , product);
 	 			
-	 			return "home";
+	 			return "homeCustomer";
 	 		}
 	   
 	   
@@ -101,8 +96,8 @@ public class AuthController {
 	   return "newComment"; }
 	   
 	   	
-	   @RequestMapping("/createReview")
-	   public String create(@RequestParam("email") String email, @RequestParam("testoCommento") String testoCommento, @RequestParam("prodotto") int idProdotto) {
+	  @RequestMapping("/createReview")
+	   public String create(Model model,@RequestParam("email") String email, @RequestParam("testoCommento") String testoCommento, @RequestParam("prodotto") int idProdotto) {
 		   Review review = new Review();
 		   Customer customer = customerService.findByEmail(email);
 	        review.setCustomer(customer);
@@ -110,16 +105,18 @@ public class AuthController {
 	        Product product = productService.findById(idProdotto);
 	        review.setProduct(product);
 	        reviewService.create(review);
-		   return "index";
-	   }
+	    	updateModel(model);
+			return "homeCustomer";
+	  }
 	   
 	   @RequestMapping("/updateReview")
-	   public String update(@RequestParam("testoCommento") String testoCommento, 
+	   public String update(Model model , @RequestParam("testoCommento") String testoCommento, 
 			   @RequestParam("idCommento") int idCommento) {
 		   Review review = reviewService.getById(idCommento);
 	        review.setComment(testoCommento);
 	        reviewService.update(review);
-		   return "index";
+	    	updateModel(model);
+			return "homeCustomer";
 	   } 
 	   
 	   @RequestMapping("/updateReviewPage")

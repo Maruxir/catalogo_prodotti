@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ecommerce</title>
-<style>
-  body {
+ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -26,11 +19,15 @@
     align-items: flex-start;
     padding: 20px;
   }
+  
+   .text {
+            flex: 1; /* Flessibilità per il testo in modo che occupi lo spazio disponibile */
+        }
 
   .product {
     background-color: #ffffff;
     border-radius: 5px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 2px 4px rgba(109, 85, 85, 0.1);
     width: 250px;
     margin: 15px;
     padding: 15px;
@@ -45,17 +42,62 @@
 
   .product h2 {
     margin-top: 0;
-    font-size: 18px;
+    font-size: 22px;
+    flex: 1; 
   }
 
   .price {
-    font-weight: bold;
+	font-weight: bold;
+    font-size: 18px;
     color: #e74c3c;
     margin-top: 10px;
   }
-
   
-  .add {
+   .myButton {
+	background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:10px;
+	padding:6px 11px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+  float: right;
+  margin-left: 10px;
+}
+.myButton:hover {
+	background-color:#5cbf2a;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+.remove {
+	background-color:#a8228b;
+	border-radius:28px;
+	border:1px solid #ab1940;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:11px;
+	padding:10px 20px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c92fa2;
+}
+.remove:hover {
+	background-color:#bf355a;
+}
+.remove:active {
+	position:relative;
+	top:1px;
+}
+
+.add {
 	background-color:#ffec64;
 	border-radius:28px;
 	border:1px solid #ffaa22;
@@ -75,41 +117,13 @@
 	position:relative;
 	top:1px;
 }
-  
-  input[type=text], select {
+
+input[type=text], select {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
-  box-sizing: border-box; 
-  }
-</style>
-
-<script>  	function home() {
-      window.location.href="/homeAdministrator";
-    } 
-</script>
-
-</head>
-<body>
-  <header class="header">
-    <h1>Sistemi Informativi sul Web</h1>
-     <a th:onclick="|home()|" class="remove">home</a>
-  </header>
-  
-  <div class="product">
-  <h2><td>     <span>Aggiungi prodotto</span>    </td></h2>
-  <hr>
-		<form action = "/addProduct" method="post">
-			<td><input name="name" placeholder="nomeProdotto"></input></td>
-			<p class="price"><td><input name="description" placeholder="descrizione prodotto"></input> </td> </p>
-		    <p class="price"><td><input name="price" placeholder="prezzo"></input>  </td></p>
-		    <hr>
-		    <input type="submit" value="Invia" class="add">
-		</form>
-	
-
-</body>
-</html>
+  box-sizing: border-box;
+}

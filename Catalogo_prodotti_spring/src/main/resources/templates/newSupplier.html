@@ -85,13 +85,16 @@
   }
 </style>
 
-<script>  
+<script>  	function home() {
+      window.location.href="/homeAdministrator";
+    } 
 </script>
 
 </head>
 <body>
   <header class="header">
     <h1>Sistemi Informativi sul Web</h1>
+     <a th:onclick="|home()|" class="remove">home</a>
   </header>
   <div class="product">
   <h2><td>     <span>Aggiungi Fornitore</span>    </td></h2>

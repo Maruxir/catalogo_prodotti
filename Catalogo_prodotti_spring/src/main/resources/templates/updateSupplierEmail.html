@@ -88,6 +88,9 @@
 </style>
 
 <script>  
+	function home() {
+      window.location.href="/homeAdministrator";
+    } 
 	document.addEventListener('DOMContentLoaded', function () {
 	    var supplierValue = sessionStorage.getItem('idSupplier');
 	    var idSupplierField = document.getElementById('idSupplierField');
@@ -105,6 +108,7 @@
 <body>
   <header class="header">
     <h1>Sistemi Informativi sul Web</h1>
+     <a th:onclick="|home()|" class="remove">home</a>
   </header>
   <div class="product">
   <h2><td>     <span>Aggiungi prodotto</span>    </td></h2>
