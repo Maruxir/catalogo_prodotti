@@ -140,6 +140,23 @@
 	position:relative;
 	top:1px;
 }
+.logout {
+	background-color:rgb(255, 0, 0);
+	border-radius:28px;
+	border:1px solid rgb(128, 0, 64);
+	float:right;
+	cursor:pointer;
+	color:#333333;
+	font-family:Arial;
+	font-weight: bold;
+	font-size:12px;
+	padding:5px 5px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffee66;
+	width: 50px;
+	height: 15px;
+	margin-right: 10px;
+}
   </style>
   <script>
   	function home() {
@@ -155,6 +172,7 @@
   
   <div class = "line">
   <a th:onclick="|home()|" class="home"><img src="https://www.freeiconspng.com/uploads/home-page-icon-0.png" width="20" alt="home" /></a></a>
+  <a th:onclick="|logout()|" class="logout">LOGOUT</a>
   </div>
 
 <div class= "container">

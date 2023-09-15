@@ -87,6 +87,16 @@
     font-size: 22px;
     flex: 1; 
   }
+    .supplier {
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(109, 85, 85, 0.1);
+    width: 300px;
+    height:350px;
+    margin: 5px;
+    padding: 5px;
+    text-align: center;
+  }
   
     .description {
     font-size: 18px;
@@ -156,12 +166,14 @@
 	display:inline-block;
 	cursor:pointer;
 	color:#333333;
-	font-family:Cambria;
-	font-size:11px;
-	padding:10px 20px;
+	font-family:Arial;
+	font-weight:bold;
+	font-size:12px;
+	padding:5px 5px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #ffee66;
 	width:150px;
+	height:15px;
 }
 .add:hover {
 	background-color:#ffab23;
@@ -188,21 +200,30 @@ input[type=text], select {
 	display:inline-block;
 	cursor:pointer;
 	color:#333333;
-	font-family:Cambria;
+	font-family:Arial;
 	font-size:11px;
 	padding:10px 20px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #ffee66;
 }
- .supplier {
-    background-color: #ffffff;
-    border-radius: 5px;
-    box-shadow: 0px 2px 4px rgba(109, 85, 85, 0.1);
-    width: 300px;
-    margin: 15px;
-    padding: 15px;
-    text-align: center;
- }
+ 
+.logout {
+	background-color:rgb(255, 0, 0);
+	border-radius:28px;
+	border:1px solid rgb(128, 0, 64);
+	float:right;
+	cursor:pointer;
+	color:#333333;
+	font-family:Arial;
+	font-weight: bold;
+	font-size:12px;
+	padding:5px 5px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffee66;
+	width: 50px;
+	height: 15px;
+	margin-right: 10px;
+}
 	
   
 </style> 
@@ -210,6 +231,9 @@ input[type=text], select {
 	function home() {
       window.location.href="/homeAdministrator";
     } 
+    function logout() {
+      window.location.href="/logout";
+    }
  	function details(codeNumber) {
 		sessionStorage.setItem('codeNumber', codeNumber);
   	var code = sessionStorage.getItem("codeNumber");
@@ -268,10 +292,12 @@ input[type=text], select {
   <header class="header">
     <h1>Catalogo</h1> 
   </header>
-  
   <div class = "line">
-  <a th:onclick="|home()|" class="home"><img src="https://www.freeiconspng.com/uploads/home-page-icon-0.png" width="20" alt="home" /></a></a>
+  <a th:onclick="|home()|" class="home"><img src="https://www.freeiconspng.com/uploads/home-page-icon-0.png" width="20" alt="home" /></a>
+  <a th:onclick="|logout()|" class="logout">LOGOUT</a>
   </div>
+  
+  
   <div class="container">
     	<tr th:each="Product: ${products}">
       <div class="product">
@@ -313,6 +339,7 @@ input[type=text], select {
 		<p class="description"><td> <span th:text = "${Supplier.email}">Default</span> <a th:onclick="|updateSupplierEmail('${Supplier.supplier_id}')|" class="myButton">
 		<img src="https://www.freeiconspng.com/uploads/edit-editor-pen-pencil-write-icon--4.png" alt="Modifica" width="12" height="12"></a></td></h2></a></td></p> 
 	    <hr>
+	    <br>
   		<a th:onclick="|deleteSupplier('${Supplier.supplier_id}')|" class="remove">
   		<img src="https://www.freeiconspng.com/uploads/remove-icon-png-31.png" width="16" height="16" alt="Elimina" /></a>
 	    </div>   
