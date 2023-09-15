@@ -55,16 +55,6 @@ public class ProductService {
 		return productRepository.getByFornitore(name);
 	}
 
-	/*public List<Product> getSup(int id) {
-		
-		List<Integer> sup = productRepository.getSuppliers(id);
-		for (Integer supplierId: suppliersId) {
-			 Optional<Supplier> supplier = supplierRepository.findById(supplierId);
-			Supplier valueSupplier = supplier.orElse(null);
-			suppliers.add(valueSupplier);
-		 }
-		
-	} */
 	
 	public void save(Product product) {
 		int max = 0;

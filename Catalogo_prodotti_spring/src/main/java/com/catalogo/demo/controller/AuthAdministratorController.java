@@ -47,11 +47,14 @@ public class AuthAdministratorController {
 		return "homeAdministrator";
 	}
 	
+	
 	   @RequestMapping(value = "/deleteProduct/{id}") 
 		public String deleteProduct(Model model, @PathVariable int id) {
-		   Product_supplier productSupplier = productSupplierService.findByProduct(id);
+		   ArrayList<Product_supplier> productSupplier = productSupplierService.findAllByProduct(id);
+		   for(Product_supplier ps : productSupplier) {
 		   if(productSupplier != null)
-			   productSupplierService.delete(productSupplier.getId_ps());
+			   productSupplierService.delete(ps.getId_ps());
+		   }
 		   
 		   productService.delete(id);
 		   
@@ -61,6 +64,11 @@ public class AuthAdministratorController {
 	   
 	   @RequestMapping(value = "/deleteSupplier/{id}") 
 		public String Supplier(Model model, @PathVariable int id) {
+		  ArrayList<Product_supplier> productSupplier = productSupplierService.findAllBySupplier(id); 
+		  for(Product_supplier ps : productSupplier) {
+			   if(ps != null)
+				   productSupplierService.delete(ps.getId_ps());
+			   }
 		   supplierService.delete(id);
 		   updateModel(model);
 			return "homeAdministrator";

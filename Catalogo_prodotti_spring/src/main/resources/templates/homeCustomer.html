@@ -12,12 +12,38 @@
     background-color: #f5f5f5;
   }
 
-  .header {
+ .header {
     background-color: #3498db;
     color: #ffffff;
-    padding: 10px;
+    padding: 2px;
     text-align: center;
+    display:block;
   }
+  
+    .line{
+    background-color: #3498db;
+    color: #ffffff;
+    text-align: center;
+    display:block;
+    height: 40px;
+    padding: 4 px; 
+  }
+  .home {
+	
+	border-radius:28px;
+	border:3px solid rgb(0, 0, 0);
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:11px;
+	padding:5px 10px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c92fa2;
+	height: 20px;
+	width:20px;
+	float : left;
+}
+
 
   .container {
     display: flex;
@@ -29,16 +55,16 @@
   
    .container2 {
     display: flex;
-    justify-content: center;
+    justify-content: right;
     align-items: flex-start;
-    padding: 10px;
+    padding: 1px;
   }
 
   .product {
     background-color: #ffffff;
     border-radius: 5px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    width: 250px;
+    width: 300px;
     margin: 15px;
     padding: 15px;
     text-align: center;
@@ -59,6 +85,16 @@
     font-weight: bold;
     color: #e74c3c;
     margin-top: 10px;
+    font-size:22px;
+  }
+  
+    
+    .description {
+	font-weight: bold;
+    font-size: 18px;
+    color: rgb(0, 128, 255);
+    margin-top: 10px;
+     text-align: center;
   }
   
   .myButton {
@@ -82,6 +118,23 @@
 .myButton:active {
 	position:relative;
 	top:1px;
+}
+
+  .search {
+	background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:20px;
+	padding:6px 11px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+  float: right;
+  margin-left: 10px;
+  width:20px;
+  height:20px;
 }
 
 .remove {
@@ -125,12 +178,21 @@
 	position:relative;
 	top:1px;
 }
-
-input[type=text], select {
-  width: 100%;
+.label {
+width: 20%;
   padding: 12px 20px;
   margin: 8px 0;
-  display: inline-block;
+  float: left;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=text], select {
+  width: 10%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: block;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
@@ -173,32 +235,34 @@ input[type=text], select {
 
 </head>
 <body>
-  <header class="header">
-    <h1>Sistemi Informativi sul Web</h1>
-     <td><a class = "add" th:onclick="|home()|">home</a></td>
+ <header class="header">
+    <h1>Catalogo</h1> 
   </header>
-  <div class="container2">    
-    <div class="form-group mb-3">
-        <label class="control-label">
-        <p></label><input type="text" id="nameProd" name="nameProd" class="form-control" placeholder="cercaProdotto"/>
-        <a th:onclick="|cercaProdotto()|" class="myButton">Cerca</a></p>
-    </div>
+  
+  <div class = "line">
+  <a th:onclick="|home()|" class="home"><img src="https://www.freeiconspng.com/uploads/home-page-icon-0.png" width="20" alt="home" /></a></a>
   </div>
-   
-    <div class="container2"> 
-	<div class="form-group mb-3">
-	<label class="control-label">
-	<p></label><input type="text" id="nameSup" name="nameSup" class="form-control" placeholder="cercaFornitore"/>
-	<a th:onclick="|cercaSupplier()|" class="myButton">Cerca</a></p>
-    </div>
-    </div>
 
+ <div class = "container2">
+        <input type="text" id="nameProd" name="nameProd" class="label" placeholder="cercaProdotto"/>
+        <a th:onclick="|cercaProdotto()|" class="search">
+        <img src="https://www.freeiconspng.com/uploads/search-icon-png-5.png" width="22" alt="cerca" /></a></p>
+   </div> 
+   
+
+	<div class = "container2">
+	<input type="text" id="nameSup" name="nameSup" class="label" placeholder="cercaFornitore"/>
+	<a th:onclick="|cercaSupplier()|" class="search">
+	<img src="https://www.freeiconspng.com/uploads/search-icon-png-5.png" width="22" alt="cerca" /></a></p>
+	</div>
+     
     <div class="container">  
     	<tr th:each="Product: ${product}">
-   <!-- <a href="product1.html" class="product-link"> -->
       <div class="product">
+      <img src="https://www.freeiconspng.com/uploads/empty-image-icon-png-8.png" width="60"/>
         <h2><td> <span th:text = "${Product.name}">Default</span> </td></h2>
-        <p class="price"><td> <span th:text = "${Product.description}">Default</span> </td> </p>
+        <hr>
+        <p class="description"><td> <span th:text = "${Product.description}">Default</span> </td> </p>
 		<p class="price"><td> <span th:text = "${Product.price}+'€'">Default</span> </td></p>
 		<p><a class="add" th:onclick="|details('${Product.number_code}')|">DETTAGLIO</a></p>	
 		<p><a class="add" th:onclick="|addReview('${Product.number_code}')|">AggiungiCommento</a></p>

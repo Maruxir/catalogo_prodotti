@@ -39,55 +39,10 @@ public class SpringSecurity{
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests((authorize) ->
-                        authorize
-            
-                        		 //.requestMatchers("/Customer").permitAll()
-                        	   /*.requestMatchers("home").permitAll()
-                        	   .requestMatchers("Reindirizzazione.html").permitAll()
-                               .requestMatchers("/updateReviewPage").permitAll()
-                               .requestMatchers("/updateReview").permitAll()
-                                //.requestMatchers("/prova/{email}").permitAll()
-                               .requestMatchers("/addProductSupplier").permitAll()
-                               .requestMatchers("/addProductSupplierCall/{id}").permitAll()
-                               .requestMatchers("/updateProductName").permitAll()
-                               .requestMatchers("/updateProductDescription").permitAll()
-                               .requestMatchers("/updateProductPrice").permitAll()
-                               .requestMatchers("/updateProductNameCall").permitAll()
-                               .requestMatchers("/updateProductDescriptionCall").permitAll()
-                               .requestMatchers("/updateProductPriceCall").permitAll()
-                               .requestMatchers("/updateSupplierAddress").permitAll()
-                               .requestMatchers("/updateSupplierAddressCall").permitAll()
-                               .requestMatchers("/updateSupplierEmail").permitAll()
-                               .requestMatchers("/updateSupplierEmailCall").permitAll()
-                               .requestMatchers("/deleteProduct/{id}").permitAll()
-                               .requestMatchers("/deleteSupplier/{id}").permitAll()
-                               .requestMatchers("/addSupplier").permitAll()
-                               .requestMatchers("/newSupplier").permitAll()
-                               .requestMatchers("/addProduct").permitAll()
-                               .requestMatchers("/addP").permitAll()
-                               .requestMatchers("/deletePs/{id}").permitAll()
-                               .requestMatchers("/cercaNome/{name}").permitAll()
-                               .requestMatchers("/createReview").permitAll()
-                               .requestMatchers("/addReview").permitAll()
-                               .requestMatchers("/cercaFornitore/{name}").permitAll()
-                               .requestMatchers("/details/{id}/{email}").permitAll()
-                                //.requestMatchers("/supplier/{id}").permitAll()
-                                //.requestMatchers("/productDetail/{id}").permitAll()
-                                //.requestMatchers("/creater").hasRole("CUSTOMER")
-                               .requestMatchers("/homeAdministrator").hasRole("ADMINISTRATOR")
-                               .requestMatchers("/homeCustomer").hasRole("CUSTOMER") */
-                               
-                               
-                               .requestMatchers("home").permitAll()
-                        	   .requestMatchers("Reindirizzazione.html").permitAll()
+                        authorize.requestMatchers("home").permitAll()
                         	   
                         	   .requestMatchers("/style.css").permitAll()
-                               
-                                //.requestMatchers("/prova/{email}").permitAll()
-                                //.requestMatchers("/supplier/{id}").permitAll()
-                                //.requestMatchers("/productDetail/{id}").permitAll()
-                                //.requestMatchers("/creater").hasRole("CUSTOMER")
-                        	   
+                              
                         	   .requestMatchers("/static/**").permitAll()
                         	   .requestMatchers("/addProduct").hasRole("ADMINISTRATOR")
                                .requestMatchers("/addProductCall").hasRole("ADMINISTRATOR")
@@ -124,11 +79,11 @@ public class SpringSecurity{
                         form -> form
                                 .loginPage("/login")
                                 .loginProcessingUrl("/login")
-                                //.defaultSuccessUrl("/users")
                                 .permitAll()
                 ).logout(
                         logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                                .logoutSuccessUrl("/home")
                                 .permitAll()
                 );
         			

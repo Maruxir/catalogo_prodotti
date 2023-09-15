@@ -61,11 +61,11 @@ public class AuthController {
 		  // Product product = productService.findById(id);
 			List<Supplier> supplier = productService.getSuppliers(id);
 			model.addAttribute("supplier" , supplier);
+			Customer customer = customerService.findByEmail(email);
 
-			List<Review> reviews = reviewService.getReviewsByProduct(id);
+			List<Review> reviews = reviewService.getReviewsByProductNotMine(id, customer.getEmail());
 			model.addAttribute("review", reviews);
 			
-			Customer customer = customerService.findByEmail(email);
 			Review reviewByCustomer = reviewService.findByCustomerProduct(customer.getId(), id);
 			model.addAttribute("reviewByCustomer", reviewByCustomer);
 			

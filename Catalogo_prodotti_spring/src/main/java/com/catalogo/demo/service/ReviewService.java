@@ -15,10 +15,6 @@ public class ReviewService {
 	@Autowired
 	private ReviewRepository reviewRepository;
 
-/*	public void create(Review review) {
-		reviewRepository.save(review);
-	} */
-
 	public void create(Review review) {
 		int idCustomer= review.getCustomer().getId();
 		int idProduct=review.getProduct().getNumber_code();
@@ -35,14 +31,12 @@ public class ReviewService {
 		reviewRepository.save(review); }
 	}
 	
-	/*public ArrayList<EmailReviewResponse>  getReviewsByProduct(int id) {
-		ArrayList<EmailReviewResponse> emailReviewResponse = new ArrayList<EmailReviewResponse>();
-		emailReviewResponse =  reviewRepository.findByProduct(id);
-		return emailReviewResponse;
-	}*/
 	
 	public ArrayList<Review>  getReviewsByProduct(int id) {
 		return reviewRepository.findByProduct(id);  }
+	
+	public ArrayList<Review>  getReviewsByProductNotMine(int idProduct, String customer) {
+		return reviewRepository.findOthersByProduct(idProduct, customer);  }
 
 	public void update(Review review) {
 		int idCustomer= review.getCustomer().getId();

@@ -15,9 +15,35 @@
   .header {
     background-color: #3498db;
     color: #ffffff;
-    padding: 10px;
+    padding: 2px;
     text-align: center;
+    display:block;
   }
+  
+    .line{
+    background-color: #3498db;
+    color: #ffffff;
+    text-align: center;
+    display:block;
+    height: 40px;
+    padding: 4 px; 
+  }
+  .home {
+	
+	border-radius:28px;
+	border:3px solid rgb(0, 0, 0);
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:11px;
+	padding:5px 10px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c92fa2;
+	height: 20px;
+	width:20px;
+	float : left;
+}
+
 
   .container {
     display: flex;
@@ -31,7 +57,7 @@
     background-color: #ffffff;
     border-radius: 5px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    width: 250px;
+    width: 80%;
     margin: 15px;
     padding: 15px;
     text-align: center;
@@ -85,6 +111,10 @@
   border-radius: 4px;
   box-sizing: border-box; 
   }
+  
+  input[readonly] {
+  display: none;
+}
 </style>
 
 <script>  
@@ -96,37 +126,21 @@
 	    var idProductField = document.getElementById('idProductField');
 	    if (codeValue) {
 	        idProductField.value = codeValue;
-	        }
-	        
-	   /*	var nameValue = sessionStorage.getItem('nameProduct');
-	    var nameField = document.getElementById('nameField');
-	    if (nameValue) {
-	        nameField.value = nameValue;
-	        }  
-	        
-	    var priceValue = sessionStorage.getItem('price');
-	    var priceField = document.getElementById('priceField');
-	    if (priceValue) {
-	        priceField.value = priceValue;
-	        }  
-	        
-	    var descriptionValue = sessionStorage.getItem('description');
-	    var descriptionField = document.getElementById('descriptionField');
-	    if (descriptionValue) {
-	        descriptionField.value = descriptionValue; 
-	        } */
+	    }
 	}  
-	
-
 );
 </script>
 
 </head>
 <body>
-   <header class="header">
-    <h1>Sistemi Informativi sul Web</h1>
-     <a th:onclick="|home()|" class="remove">home</a>
+<header class="header">
+    <h1>Catalogo</h1> 
   </header>
+  
+  <div class = "line">
+  <a th:onclick="|home()|" class="home"><img src="https://www.freeiconspng.com/uploads/home-page-icon-0.png" width="20" alt="home" /></a></a>
+  </div>
+  <div class="container">
   <div class="product">
   <h2><td>     <span>Aggiorna Descrizione</span>    </td></h2>
   <hr>
@@ -138,6 +152,7 @@
 		    <input type="submit" value="Invia" class="add">
 		</form>
 	
-
+	</div>
+	</div>
 </body>
 </html>

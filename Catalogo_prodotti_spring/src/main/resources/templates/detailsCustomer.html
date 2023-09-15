@@ -9,14 +9,40 @@
     margin: 0;
     padding: 0;
     background-color: #f5f5f5;
+    
   }
 
   .header {
     background-color: #3498db;
     color: #ffffff;
-    padding: 10px;
+    padding: 2px;
     text-align: center;
+    display:block;
   }
+  
+    .line{
+    background-color: #3498db;
+    color: #ffffff;
+    text-align: center;
+    display:block;
+    height: 40px;
+    padding: 4 px; 
+  }
+  .home {
+	
+	border-radius:28px;
+	border:3px solid rgb(0, 0, 0);
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:11px;
+	padding:5px 10px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c92fa2;
+	height: 20px;
+	width:20px;
+	float : left;
+}
 
   .container {
     display: flex;
@@ -26,11 +52,33 @@
     padding: 20px;
   }
 
+    .line2{
+    background-color: rgb(128, 0, 128);
+    color: rgb(0, 0, 0);
+    text-align: center;
+    display:block;
+    height: 20px;
+    padding: 4px;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+      .line3{
+    background-color: rgb(255, 128, 0);
+    color: rgb(0, 0, 0);
+    text-align: center;
+    display:block;
+    height: 20px;
+    padding: 4px;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
   .product {
     background-color: #ffffff;
     border-radius: 5px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    width: 30%;
+    width: 80%;
     margin: 15px;
     padding: 15px;
     text-align: center;
@@ -44,7 +92,7 @@
 
   .product h2 {
     margin-top: 0;
-    font-size: 18px;
+    font-size: 20px;
   }
 
   .price {
@@ -93,6 +141,22 @@
 	position:relative;
 	top:1px;
 }
+
+  .myButton {
+	background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:10px;
+	padding:6px 11px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+  height: 10px;
+  width: auto;
+}
   </style>
   <script>
     function home() {
@@ -105,65 +169,69 @@
 </head>
 <body>
 
-  <header class="header">
-    <h1>Sistemi Informativi sul Web</h1>
-    <td><a class = "add" th:onclick="|home()|">home</a></td>
-    
+
+ <header class="header">
+    <h1>Catalogo</h1> 
   </header>
+  
+  <div class = "line">
+  <a th:onclick="|home()|" class="home"><img src="https://www.freeiconspng.com/uploads/home-page-icon-0.png" width="20" alt="home" /></a></a>
+  </div>
 
 <div class= "container">
 <div class="product">
-
-	<h2>Lista fornitori</h2>
+	<div class ="line2"
+	<h2>Lista fornitori</h2> </div>
 	<hr>
     <table>
     <thead>
-     <tr>
+    <!-- <tr>
         <th>Nome</th>
         <th>Cognome</th>
         <th>Indirizzo</th>
         <th>Email</th>
-      </tr>
+      </tr> -->
      	
 	<tr th:each="Supplier: ${supplier}">
 		<td> <span th:text = "${Supplier.name}">Default</span> </td>
 		<td> <span th:text = "${Supplier.surname}">Default</span> </td>
 		<td> <span th:text = "${Supplier.address}">Default</span> </td>
-		<td> <span th:text = "${Supplier.email}">Default</span> </td>
+		<td> <b><span th:text = "${Supplier.email}">Default</span> </b></td>
 	</tr>
     </thead>
     </table>
    <hr> 
     <br>
-	<h2>Commenti</h2>
+    <div class= "line3">
+	<h2>Commenti</h2> </div>
 	<hr>    
        <table>
-     <tr>
-        <th>Utente</th>
-        <th>Commento</th>
-      </tr>
+     
      	
 	<tr th:each="Review: ${review}">
-		<td> <span th:text = "${Review.customer.email}">Default</span> </td>
-		<td> <span th:text = "${Review.comment}">Default</span> </td>
+		<td> <b><span th:text = "${Review.customer.email}+ ':'">Default</span></b> </td>
+		<td> <i><span th:text = "${Review.comment}">Default</span></i> </td>
 	</form>
 	</td>
 		    		
 	</tr>
     </table>
     <hr>
+    <hr>
     
-      <table>
+      
      	
 	<tr th:each="Review: ${reviewByCustomer}">
-		<td> <span th:text = "${Review.customer.email}">Default</span> </td>
-		<td> <span th:text = "${Review.comment}">Default</span> </td>
-		<td><a class = "add" th:onclick="|updateReview('${Review.review_id}')|">modifica</a></td>
+		<p><td><i> <span th:text = "'Hai scritto: ' + ${Review.comment}">Default</span></i> </td>
+		<td><a class = "myButton" th:onclick="|updateReview('${Review.review_id}')|">
+		<img src="https://www.freeiconspng.com/uploads/edit-editor-pen-pencil-write-icon--4.png" alt="Modifica" width="12" height="12"></a></td></p> 
+	    <hr>
+		</a></td>
 	</form>
 	</td>
 		    		
 	</tr>
-    </table>
+
 
   </form>
 </div>

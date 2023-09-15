@@ -1,7 +1,8 @@
 package com.catalogo.demo.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import com.catalogo.demo.model.Product_supplier;
@@ -20,10 +21,19 @@ public class ProductSupplierService {
 		
 		return productSupplierRepository.findByProduct(id);
 	}
-
+	
+	public ArrayList<Product_supplier> findAllByProduct(int id) {
+		
+		return productSupplierRepository.findAllByProduct(id);
+	} 
 	public void save(Product_supplier product_supplier) {
 		productSupplierRepository.save(product_supplier);
 		
+	}
+
+	public ArrayList<Product_supplier> findAllBySupplier(int id) {
+		
+		return productSupplierRepository.findAllBySupplier(id);
 	}
 
 

@@ -18,7 +18,9 @@ public interface ProductSupplierRepository extends CrudRepository<Product_suppli
 	
 	@Query(value = "select * from product_supplier ps where ps.number_code = ?1", nativeQuery = true)
 	ArrayList<Product_supplier> findAllByProduct(int id);
-	
+
+	@Query(value = "select * from product_supplier ps where ps.supplier_id = ?1", nativeQuery = true)
+	ArrayList<Product_supplier> findAllBySupplier(int id);
 	
 }
 

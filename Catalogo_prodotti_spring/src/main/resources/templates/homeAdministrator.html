@@ -16,9 +16,34 @@
   .header {
     background-color: #3498db;
     color: #ffffff;
-    padding: 10px;
+    padding: 2px;
     text-align: center;
+    display:block;
   }
+  
+    .line{
+    background-color: #3498db;
+    color: #ffffff;
+    text-align: center;
+    display:block;
+    height: 40px;
+    padding: 4 px; 
+  }
+  .home {
+	
+	border-radius:28px;
+	border:3px solid rgb(0, 0, 0);
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:11px;
+	padding:5px 10px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c92fa2;
+	height: 20px;
+	width:20px;
+	float : left;
+}
 
   .container {
     display: flex;
@@ -64,7 +89,6 @@
   }
   
     .description {
-	font-weight: bold;
     font-size: 18px;
     color: rgb(0, 128, 255);
     margin-top: 10px;
@@ -157,22 +181,6 @@ input[type=text], select {
   box-sizing: border-box;
 }
 
-.home {
-	
-	border-radius:28px;
-	border:3px solid rgb(0, 0, 0);
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:11px;
-	padding:10px 20px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #c92fa2;
-	height: 30px;
-	width:30px;
-	float:left;
-	display:block;
-}
 .new {
 	background-color:#ffec64;
 	border-radius:28px;
@@ -258,11 +266,12 @@ input[type=text], select {
 </head>
 <body>
   <header class="header">
-  <a th:onclick="|home()|" class="home"><img src="https://www.freeiconspng.com/uploads/home-page-icon-0.png" width="30" alt="home" /></a></a>
-    <h1>Catalogo</h1>
-    
+    <h1>Catalogo</h1> 
   </header>
   
+  <div class = "line">
+  <a th:onclick="|home()|" class="home"><img src="https://www.freeiconspng.com/uploads/home-page-icon-0.png" width="20" alt="home" /></a></a>
+  </div>
   <div class="container">
     	<tr th:each="Product: ${products}">
       <div class="product">
@@ -299,9 +308,9 @@ input[type=text], select {
 		<img src="https://www.freeiconspng.com/uploads/--tie-user-users-work-worker-working-icon--icon-search-engine-6.png" width="60"/>
 		<h2><td> <span th:text = "${Supplier.name}">Default</span><span th:text ="' '+${Supplier.surname}">Default</span> </td></h2> 
 		<hr>
-		<p class = "price"><td> <span th:text = "${Supplier.address}">Default</span> <a th:onclick="|updateSupplierAddress('${Supplier.supplier_id}')|" class="myButton">
+		<p class = "description"><td> <span th:text = "${Supplier.address}">Default</span> <a th:onclick="|updateSupplierAddress('${Supplier.supplier_id}')|" class="myButton">
 		<img src="https://www.freeiconspng.com/uploads/edit-editor-pen-pencil-write-icon--4.png" alt="Modifica" width="12" height="12"></a></td></h2></a></td> </p>
-		<p class="price"><td> <span th:text = "${Supplier.email}">Default</span> <a th:onclick="|updateSupplierEmail('${Supplier.supplier_id}')|" class="myButton">
+		<p class="description"><td> <span th:text = "${Supplier.email}">Default</span> <a th:onclick="|updateSupplierEmail('${Supplier.supplier_id}')|" class="myButton">
 		<img src="https://www.freeiconspng.com/uploads/edit-editor-pen-pencil-write-icon--4.png" alt="Modifica" width="12" height="12"></a></td></h2></a></td></p> 
 	    <hr>
   		<a th:onclick="|deleteSupplier('${Supplier.supplier_id}')|" class="remove">

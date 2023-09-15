@@ -32,6 +32,8 @@ public interface ReviewRepository extends CrudRepository<Review, Integer>{
 	ArrayList<Review> findByProduct(int id);
 	
 	
-	@Query(value = "select * from review r where r.number_code = ?1 and r.customer_id != ?2", nativeQuery = true)
-	ArrayList<Review> findOthersByProduct(int idProduct, int idCustomer);
+	@Query(value = "select * from (select r.customer_id, r.review_id, c.email, r.comment, number_code "
+			+ "from customer c join review r on (r.customer_id = c.customer_id) ) as a where email "
+			+ "not like %?2% and number_code = ?1", nativeQuery = true)
+	ArrayList<Review> findOthersByProduct(int idProduct, String Customer);
 }
