@@ -10,15 +10,36 @@
     margin: 0;
     padding: 0;
     background-color: #f5f5f5;
+      display: flex;
+    flex-direction: column;
+    min-height: 100vh;
   }
 
-.header {
+
+   .header {
     background-color: #3498db;
-    color: #ffffff;
+    color: rgb(255, 255, 255);
     padding: 2px;
     text-align: center;
     display:block;
+   font-family: 'Arial Narrow Bold';
+   font-size: 30px;
   }
+        .footer {
+    background-color: #3498db;
+    color: rgb(0, 0, 0);
+    padding: 2px;
+    text-align: end;
+   font-family: 'Arial Narrow Bold';
+   font-size: 12px;
+  }
+  
+  .footertext {
+	margin-right: 10px;
+	color:#ffffff ; 
+	font-size: 20;
+	font-weight: bold;
+}
   
     .line{
     background-color: #3498db;
@@ -28,24 +49,9 @@
     height: 40px;
     padding: 4 px; 
   }
-  .home {
-	
-	border-radius:28px;
-	border:3px solid rgb(0, 0, 0);
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:11px;
-	padding:5px 10px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #c92fa2;
-	height: 20px;
-	width:20px;
-	float : left;
-}
-
 
   .container {
+	flex:1;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -114,9 +120,47 @@
   input[readonly] {
   display: none;
 }
+.home {
+	
+	border-radius:28px;
+	border:3px solid rgb(0, 0, 0);
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:11px;
+	padding:5px 10px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c92fa2;
+	height: 20px;
+	width:20px;
+	float : left;
+	margin-top: 60px;
+}
+.logout {
+	background-color:rgb(255, 0, 0);
+	border-radius:28px;
+	border:3px solid rgb(0, 0, 0);
+	float:right;
+	cursor:pointer;
+	color:#333333;
+	font-family:Arial;
+	font-weight: bold;
+	font-size:12px;
+	padding:5px 5px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffee66;
+	width: 20px;
+	height: 20px;
+	margin-right: 5px;
+	margin-top: 60px;
+	
+}
 </style>
 
 <script>  
+function logout() {
+      window.location.href="/logout";
+    }  
 	function home() {
       window.location.href="/homeAdministrator";
     } 
@@ -135,14 +179,12 @@
 
 </head>
 <body>
- <header class="header">
-    <h1>Catalogo</h1> 
+  <header class="header">
+    <h1>Garden❀Lovers
+      <a th:onclick="|home()|" class="home"><img src="https://www.freeiconspng.com/uploads/home-page-icon-0.png" width="20" alt="home" /></a></a>
+  <a th:onclick="|logout()|" class="logout">
+  <img src="https://www.freeiconspng.com/uploads/exit-icon-3.png" width="20" alt="logout" /></a> </h1>
   </header>
-  
-  <div class = "line">
-  <a th:onclick="|home()|" class="home"><img src="https://www.freeiconspng.com/uploads/home-page-icon-0.png" width="20" alt="home" /></a></a>
-  </div>
-  
   <div class = "container">
   <div class="product">
   <h2><td>     <span>Aggiungi prodotto</span>    </td></h2>
@@ -158,5 +200,10 @@
 	
 </div>
 </div>
+   <footer class= "footer">
+ 	<p class="footertext">Autore: Irene Marucci <br>
+ 	Matricola: 546388 <br>
+ 	<a class= "footertext" href="https://github.com/Maruxir/catalogo_prodotti">github</a></p>
+ </footer>
 </body>
 </html>

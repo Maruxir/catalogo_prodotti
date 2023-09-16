@@ -74,17 +74,25 @@ public class AuthController {
 	    
 	   @RequestMapping(value = "/cercaNome/{name}") 
 		public String cercaNome(Model model , @PathVariable String name) {
+		   if(name!= null) {
 			List<Product> product = productService.getProductByName(name);
-			model.addAttribute("product" , product);
-			
+			model.addAttribute("product" , product); }
+		   
+		   else {
+				   updateModel(model);
+		   }
 			return "homeCustomer";
 		}
 	   
 	   @RequestMapping(value = "/cercaFornitore/{name}") 
 	 		public String cercaFornitore(Model model , @PathVariable String name) {
+		   if(name!=null) {
 	 			List<Product> product = productService.getProductByFornitore(name);
 	 			model.addAttribute("product" , product);
-	 			
+		   }
+		   else {
+			   updateModel(model);
+		   }
 	 			return "homeCustomer";
 	 		}
 	   

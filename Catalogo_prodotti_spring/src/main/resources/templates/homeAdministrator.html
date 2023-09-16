@@ -11,15 +11,36 @@
     margin: 0;
     padding: 0;
     background-color: #f5f5f5;
+       display: flex;
+    flex-direction: column;
+    min-height: 100vh;
   }
 
-  .header {
+
+   .header {
     background-color: #3498db;
-    color: #ffffff;
+    color: rgb(255, 255, 255);
     padding: 2px;
     text-align: center;
     display:block;
+   font-family: 'Arial Narrow Bold';
+   font-size: 30px;
   }
+      .footer {
+    background-color: #3498db;
+    color: rgb(0, 0, 0);
+    padding: 2px;
+    text-align: end;
+   font-family: 'Arial Narrow Bold';
+   font-size: 12px;
+  }
+  
+  .footertext {
+	margin-right: 10px;
+	color:#ffffff ; 
+	font-size: 20;
+	font-weight: bold;
+}
   
     .line{
     background-color: #3498db;
@@ -29,23 +50,8 @@
     height: 40px;
     padding: 4 px; 
   }
-  .home {
-	
-	border-radius:28px;
-	border:3px solid rgb(0, 0, 0);
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:11px;
-	padding:5px 10px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #c92fa2;
-	height: 20px;
-	width:20px;
-	float : left;
-}
-
   .container {
+	flex:1;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -86,6 +92,7 @@
     margin-top: 0;
     font-size: 22px;
     flex: 1; 
+    
   }
     .supplier {
     background-color: #ffffff;
@@ -102,14 +109,15 @@
     font-size: 18px;
     color: rgb(0, 128, 255);
     margin-top: 10px;
-     text-align: center;
-  }
+     text-align: left;
+       }
 
   .price {
 	font-weight: bold;
     font-size: 30px;
     color: #e74c3c;
     margin-top: 10px;
+     text-align: left;
   }
   
    .myButton {
@@ -207,10 +215,26 @@ input[type=text], select {
 	text-shadow:0px 1px 0px #ffee66;
 }
  
-.logout {
+.home {
+	
+	border-radius:28px;
+	border:3px solid rgb(0, 0, 0);
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:11px;
+	padding:5px 10px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c92fa2;
+	height: 20px;
+	width:20px;
+	float : left;
+	margin-top: 60px;
+}
+	.logout {
 	background-color:rgb(255, 0, 0);
 	border-radius:28px;
-	border:1px solid rgb(128, 0, 64);
+	border:3px solid rgb(0, 0, 0);
 	float:right;
 	cursor:pointer;
 	color:#333333;
@@ -220,11 +244,12 @@ input[type=text], select {
 	padding:5px 5px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #ffee66;
-	width: 50px;
-	height: 15px;
-	margin-right: 10px;
-}
+	width: 20px;
+	height: 20px;
+	margin-right: 5px;
+	margin-top: 60px;
 	
+}
   
 </style> 
 <script> 
@@ -290,12 +315,11 @@ input[type=text], select {
 </head>
 <body>
   <header class="header">
-    <h1>Catalogo</h1> 
+    <h1>Garden ❀Lovers
+      <a th:onclick="|home()|" class="home"><img src="https://www.freeiconspng.com/uploads/home-page-icon-0.png" width="20" alt="home" /></a></a>
+  <a th:onclick="|logout()|" class="logout">
+  <img src="https://www.freeiconspng.com/uploads/exit-icon-3.png" width="20" alt="logout" /></a> </h1>
   </header>
-  <div class = "line">
-  <a th:onclick="|home()|" class="home"><img src="https://www.freeiconspng.com/uploads/home-page-icon-0.png" width="20" alt="home" /></a>
-  <a th:onclick="|logout()|" class="logout">LOGOUT</a>
-  </div>
   
   
   <div class="container">
@@ -356,5 +380,11 @@ input[type=text], select {
     </table>
       
   </divclass="container"> 
+  
+   <footer class= "footer">
+ 	<p class="footertext">Autore: Irene Marucci <br>
+ 	Matricola: 546388 <br>
+ 	<a class= "footertext" href="https://github.com/Maruxir/catalogo_prodotti">github</a></p>
+ </footer>
 </body>
 </html>
