@@ -112,10 +112,25 @@
         tr:hover {
             background-color: #f5f5f5;
     }    
-.add {
-	background-color:#ffec64;
+.customer {
+	background-color:rgb(255, 128, 0);
 	border-radius:28px;
-	border:1px solid #ffaa22;
+	border:1px solid rgb(128, 0, 0);
+	display:inline-block;
+	cursor:pointer;
+	color:#333333;
+	font-family:Arial;
+	font-size:35px;
+	padding:20px 100px;
+	width: 200px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffee66;
+}
+
+.admin{
+	background-color:rgb(128, 255, 0);
+	border-radius:28px;
+	border:1px solid rgb(0, 128, 64);
 	display:inline-block;
 	cursor:pointer;
 	color:#333333;
@@ -152,10 +167,10 @@
 <div class= "container">
 <div class="product">
 
-		<a class="add" onclick="customer()">Utente</a>
+		<a class="customer" onclick="customer()">Utente</a>
 		<br>
 		<br>
-		<a class="add" onclick="administrator()">Amministratore</a>
+		<a class="admin" onclick="administrator()">Amministratore</a>
 
 
 	
